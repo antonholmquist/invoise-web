@@ -1,4 +1,4 @@
-# Invoice
+# Invoise
 
 Invoice generator hobby project.
 
