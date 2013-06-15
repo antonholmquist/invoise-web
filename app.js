@@ -3,10 +3,14 @@
  * Module dependencies.
  */
 
-var express = require('express')
-	, routes = require('./routes')
-	, user = require('./routes/user')
-	, http = require('http'), path = require('path');
+var express = require('express'),
+	http = require('http'), path = require('path'),
+	phantom = require('phantom'),
+	fs = require('fs')
+;
+
+var routes = require('./routes');
+;
 
 var app = express();
 
@@ -26,9 +30,80 @@ if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
 
+function generateRandomFilename(ext) {
+	function s4() {
+		return Math.floor((1 + Math.random()) * 0x10000)
+				.toString(16)
+				.substring(1);
+	};
+	
+	var random = s4();
+
+	var timestamp = new Date().getTime();
+
+	return timestamp + '-' + random + '.' + ext;
+
+};
+
 app.get('/', routes.index);
-app.get('/users', user.list);
+
+app.get('/render', function (req, res) {
+
+	//res.send("test");
+	phantom.create(function(ph) {
+		ph.createPage(function(page) {
+			return page.open("http://www.google.com", function(status) {
+
+				var directory = './temp/';
+
+				// Check if path exists
+				fs.lstat(directory, function(err, stats) {
+
+					// Create directory if neccessary
+					if (err) {
+						fs.mkdirSync(directory);
+					} 
+
+					// Create a new filename
+					var filePath = directory + generateRandomFilename('pdf');
+
+					// Render file
+					page.render(filePath, function(err) {
+						console.log("render finished");
+
+						// Read file into memory
+						fs.readFile(filePath, function (err, data) {
+  							res.send(data);
+
+  							// Delete file
+  							fs.unlink(filePath, function (err) {
+									
+							});
+
+						});
+					});
+
+
+
+					
+				});
+
+				return page.evaluate((function() {
+				
+					return document.title;
+				}), function(result) {
+					console.log('Page title is ' + result);
+				return ph.exit();
+				});
+			});
+		});
+	});
+});
+
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+
