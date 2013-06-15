@@ -1,6 +1,16 @@
 
 /* set a max-width for horizontal fluid layout and make it centered */
 
+body {
+	background-color: #333;
+	color: #ddd;
+}
+
+.invoice {
+	background-color: white;
+	color: #333;
+	padding: 1em;
+}
 
 .container-fluid {
 	margin-right: auto;

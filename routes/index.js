@@ -9,7 +9,7 @@ exports.index = function(req, res){
 
 // Invoice
 exports.invoice = function(req, res){
-	res.render('invoice');
+	res.render('invoice/static');
 };
 
 // Render test
