@@ -17,3 +17,7 @@ body {
 	margin-left: auto;
 	max-width: 800px; 
 } 
+
+td input {
+	width: 90%;
+}
