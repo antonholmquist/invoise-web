@@ -1,13 +1,11 @@
-Invoice
-===========
+# Invoice
 
 Invoice generator hobby project.
 
----
 
-# Dependencies
+## Dependencies
 
-## wkhtmltopdf
+### wkhtmltopdf
 HTML to PDF generator.  
 
 https://code.google.com/p/wkhtmltopdf/  
