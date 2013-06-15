@@ -48,6 +48,10 @@ function generateRandomFilename(ext) {
 app.get('/', routes.index);
 app.get('/invoice', routes.invoice);
 
+app.get('/test', function(req, res) {
+	//res.send('<html ng-app><head><title>invoise</title><script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script></head><body style="background-color: red;">test</body></html>')
+});
+
 app.get('/render', function (req, res) {
 
 	//res.send("test");
@@ -56,7 +60,14 @@ app.get('/render', function (req, res) {
 
 			var url = req.protocol + '://' + req.host + ':' + app.get('port') + '/invoice';
 
-			console.log('url: ' + url);
+			//var url = 'https://www.google.se/search?q=phantomjs+text+color&oq=phantomjs+text+color&aqs=chrome.0.57j62l2.3128j0&sourceid=chrome&ie=UTF-8#sclient=psy-ab&q=phantomjs+color&oq=phantomjs+color&gs_l=serp.3..0i7j0j0i7i30j0i30.17531.17531.0.17715.1.1.0.0.0.0.68.68.1.1.0...0.0.0..1c.1.17.psy-ab.nGyQH9GRcYk&pbx=1&bav=on.2,or.r_cp.r_qf.&bvm=bv.47883778,d.bGE&fp=693ac66bf07dbf5c&biw=1201&bih=806';
+			//url = 'http://feber.se';
+			//url = 'http://uggedal.com/journal/phantomjs-default-background-color/';
+			//url = 'http://nooday.com/shop/umbrella-bootstrap-theme/?utm_source=builtwithbootstrap.com&utm_medium=display&utm_content=&utm_campaign=';
+			//url = 'http://foundation.zurb.com/docs/';
+			//url = 'http://www.99lime.com/elements/';
+			//url = 'http://twitter.github.io/bootstrap/';
+			console.log('render: ' + url);
 
 
 			// Set options
@@ -100,9 +111,9 @@ app.get('/render', function (req, res) {
 
 						// Download instead
 						res.download(filePath, 'invoice.pdf', function (err) {
-							fs.unlink(filePath, function(err) {
+							//fs.unlink(filePath, function(err) {
 
-							});
+							//});
 						});
 
 					});

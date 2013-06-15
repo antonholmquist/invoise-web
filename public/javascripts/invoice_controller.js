@@ -6,9 +6,18 @@ function InvoiceController($scope) {
 	$scope.currencySymbol = '$';
 	$scope.vatPercentage = '0.25';
 
+	$scope.from = "Company Name\nAdress";
+	$scope.to = "Company Name\nAdress";
+	$scope.invoiceID = "001";
+
+	var date = new Date();
+    $scope.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+
+    date = new Date(date.getTime() + 1000 * 3600 * 24 * 30);
+    $scope.dueDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+
 	$scope.items = [
-		{description:'en apa', price:500},
-		{description:'en ko', price:1500},
+		{description:'item', price:500},
 	];
 
 	$scope.updateSummary = function() {

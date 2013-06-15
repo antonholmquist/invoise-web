@@ -2,14 +2,26 @@
 /* set a max-width for horizontal fluid layout and make it centered */
 
 body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	color: #eee;
 	background-color: #333;
-	color: #ddd;
+}
+
+h1 {
+	margin-top: 0;
+}
+
+table {
+	width: 100%;
 }
 
 .invoice {
 	background-color: white;
 	color: #333;
-	padding: 1em;
+	margin: 0px;
+	padding: 0px;
 }
 
 .container-fluid {
@@ -19,5 +31,5 @@ body {
 } 
 
 td input {
-	width: 90%;
+	width: 50%;
 }

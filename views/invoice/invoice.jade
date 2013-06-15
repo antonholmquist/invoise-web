@@ -1,10 +1,29 @@
 
 script(src='/javascripts/invoice_controller.js')
 
-input(type="text", ng-model="yourname")
-h1 INVOICE {{yourname}}
+h1 Invoice
 
 div(ng-controller="InvoiceController")
+
+	div
+		label From:
+		textarea(ng-model="from")
+
+	div 
+		label To
+		textarea(ng-model="to")
+
+	div
+		span Invoice ID: 
+		input(type="text", ng-model="invoiceID")
+	div
+		span Date:
+		span {{date}}
+	div
+		span Due Date:
+		span {{dueDate}}
+
+
 	table.table
 		thead
 			th Description
