@@ -18,6 +18,7 @@ function InvoiceController($scope) {
 	};
 
 	$scope.removeItem = function(index) {
+		console.log("remove");
 		$scope.items.splice(index, 1);
 	};
 }

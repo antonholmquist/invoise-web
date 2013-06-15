@@ -13,8 +13,8 @@ div(ng-controller="InvoiceController")
 			td {{item.description}}
 			td {{item.price}} SEK
 			td
-				form(ng-submit="removeItem({{$index}})")
-					input(type="submit", value="remove")
+				button(ng-click="removeItem($index)") remove
+
 		form(ng-submit="addItem()")
 			tr 
 				td 
