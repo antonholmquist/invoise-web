@@ -2,6 +2,14 @@
 
 Invoice generator hobby project.
 
+#Production Machine
+
+Connect: `ssh ubuntu@invoise.com`
+
+#Domain Name
+
+invoise.com registered on namecheap.com
+
 # Run
 
 On a development machine, just type:
@@ -10,7 +18,11 @@ On a development machine, just type:
 
 On a production machine port 80 needs to be specified and sudo may be required to bind to this port.
 
-`sudo PORT=80 node app.js`
+Nohup is used to get it running after logging out from shell. 
+
+`sudo PORT=80 nohup node app.js &`
+
+To kill it: `ps aux`, find process id and `kill <id>`.  
 
 
 ## Dependencies
