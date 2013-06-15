@@ -1,8 +1,9 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
 
-a {
-  color: #00B7FF;
-}
+/* set a max-width for horizontal fluid layout and make it centered */
+
+
+.container-fluid {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 800px; 
+} 

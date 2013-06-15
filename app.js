@@ -46,6 +46,7 @@ function generateRandomFilename(ext) {
 };
 
 app.get('/', routes.index);
+app.get('/invoice', routes.invoice);
 
 app.get('/render', function (req, res) {
 
