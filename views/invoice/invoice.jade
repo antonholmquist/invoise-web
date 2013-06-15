@@ -11,7 +11,7 @@ div(ng-controller="InvoiceController")
 			th Price
 		tr(ng-repeat="item in items")
 			td {{item.description}}
-			td {{item.price}} SEK
+			td {{currencySymbol}}{{item.price}} 
 			td
 				button(ng-click="removeItem($index)") remove
 
@@ -23,3 +23,15 @@ div(ng-controller="InvoiceController")
 					input(type="text", ng-model="price", placeholder="price")
 				td 
 					input(type="submit", value="add")
+
+
+		tr
+			td Subtotal
+			td {{currencySymbol}}{{subtotalPrice}}
+		tr
+			td VAT {{vatPercentage}}%
+			td {{currencySymbol}}{{vatAmount}}
+		tr
+			td Total
+			td {{currencySymbol}}{{totalPrice}}
+
