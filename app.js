@@ -53,7 +53,12 @@ app.get('/render', function (req, res) {
 	//res.send("test");
 	phantom.create(function(ph) {
 		ph.createPage(function(page) {
-			return page.open("http://www.google.com", function(status) {
+
+			var url = req.protocol + '://' + req.host + ':' + app.get('port') + '/invoice';
+
+			console.log('url: ' + url);
+
+			return page.open(url, function(status) {
 
 				var directory = './temp/';
 
