@@ -58,8 +58,11 @@ app.get('/render', function (req, res) {
 
 			console.log('url: ' + url);
 
+
 			// Set options
+			//page.set('viewportSize', {width:2000,height:480});
 			page.set('paperSize', { format: 'A4', orientation: 'portrait', border: '2cm' });
+			page.set('zoomFactor', 1);
 
 			return page.open(url, function(status) {
 
@@ -82,6 +85,8 @@ app.get('/render', function (req, res) {
 
 					// Render file
 					page.render(filePath, function(err) {
+
+						ph.exit();
 
 						console.log("render finished: " + err);
 
@@ -107,13 +112,6 @@ app.get('/render', function (req, res) {
 					
 				});
 
-				return page.evaluate((function() {
-				
-					return document.title;
-				}), function(result) {
-					console.log('Page title is ' + result);
-				return ph.exit();
-				});
 			});
 		});
 	});
