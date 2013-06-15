@@ -69,18 +69,24 @@ app.get('/render', function (req, res) {
 
 					// Render file
 					page.render(filePath, function(err) {
-						console.log("render finished");
 
-						// Read file into memory
-						fs.readFile(filePath, function (err, data) {
-  							res.send(data);
+						console.log("render finished: " + err);
 
-  							// Delete file
-  							fs.unlink(filePath, function (err) {
-									
+						/*
+						// Send file
+						res.sendfile(filePath, function (err) {
+							fs.unlink(filePath, function(err) {
+
 							});
+						});*/
 
+						// Download instead
+						res.download(filePath, 'invoice.pdf', function (err) {
+							fs.unlink(filePath, function(err) {
+
+							});
 						});
+
 					});
 
 
