@@ -58,6 +58,9 @@ app.get('/render', function (req, res) {
 
 			console.log('url: ' + url);
 
+			// Set options
+			page.set('paperSize', { format: 'A4', orientation: 'portrait', border: '2cm' });
+
 			return page.open(url, function(status) {
 
 				var directory = './temp/';
@@ -72,6 +75,10 @@ app.get('/render', function (req, res) {
 
 					// Create a new filename
 					var filePath = directory + generateRandomFilename('pdf');
+
+
+					
+
 
 					// Render file
 					page.render(filePath, function(err) {
