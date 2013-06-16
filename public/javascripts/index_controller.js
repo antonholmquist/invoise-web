@@ -27,9 +27,5 @@ $(document).ready(function() {
 			window.location.href = response.downloadURL;
 		});
 	});
-
-	// Autosize all inputs
-	$('input').autosizeInput();
-
 				
 });
