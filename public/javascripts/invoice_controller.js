@@ -52,7 +52,15 @@ function InvoiceController($scope) {
 
 	// Copy to global scope to ajax can get it
 	globalInvoice = $scope.invoice;
+
+	// Watch items (third option enables deep linking)
+	$scope.$watch('invoice.items', function(newValue, oldValue) { 
+		$scope.updateSummary();
+	}, true);
 	
+	function isNumber(n) {
+  		return !isNaN(parseFloat(n)) && isFinite(n);
+	}
 
 	$scope.updateSummary = function() {
 
@@ -60,17 +68,19 @@ function InvoiceController($scope) {
 
 		for (i in $scope.invoice.items) {
 			var item = $scope.invoice.items[i];
-			subtotalPrice += parseInt(item.price, 10);
+			var value = parseInt(item.price, 10);
+
+			if (isNumber(value)) {
+				subtotalPrice += value;
+			}
+			
 		}
 		
 		$scope.invoice.subtotalPrice = subtotalPrice;
 		$scope.invoice.vatAmount = $scope.invoice.subtotalPrice * $scope.invoice.vatPercentage;
-		
-
 		$scope.invoice.totalPrice = $scope.invoice.subtotalPrice + $scope.invoice.vatAmount;
 
-
-	}; $scope.updateSummary();
+	}; 
 
 
 	$scope.addItem = function() {
@@ -83,13 +93,11 @@ function InvoiceController($scope) {
 		$scope.newItem.description = '';
 		$scope.newItem.price = '';
 
-		$scope.updateSummary();
 	};
 
 	$scope.removeItem = function(index) {
 		console.log("remove");
 		$scope.invoice.items.splice(index, 1);
-		$scope.updateSummary();
 	};
 }
 

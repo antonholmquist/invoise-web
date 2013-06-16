@@ -44,31 +44,41 @@ div(ng-controller="InvoiceController")
 		thead
 			th.description Description
 			th.price Price
-		tr.item(ng-repeat="item in invoice.items")
-			td.description {{item.description}}
-			td.price {{invoice.currencySymbol}}{{item.price}} 
+
+		tbody
+
+			// Loop
+			tr.item(ng-repeat="item in invoice.items")
+
+				// Existing items
+
+				td.description
+					input(type="text", ng-model="item.description", placeholder="description")
+				td.price
+					input(type="text", ng-model="item.price", placeholder="price")
+				if !static
+					td.edit
+						button(ng-click="removeItem($index)") remove
+
+			// Add new items
 			if !static
-				td
-					button(ng-click="removeItem($index)") remove
-
-		if !static
-			form(ng-submit="addItem()")
-				tr 
-					td 
-						input.new-item(type="text", ng-model="newItem.description", placeholder="description")
-					td 
-						input.new-item(type="text", ng-model="newItem.price", placeholder="price")
-					td 
-						input(type="submit", value="add")
+				form(ng-submit="addItem()")
+					tr 
+						td.description
+							input.new-item(type="text", ng-model="newItem.description", placeholder="description")
+						td.price
+							input.new-item(type="text", ng-model="newItem.price", placeholder="price")
+						td.edit
+							input(type="submit", value="add")
 
 
-		tr
-			td.description Subtotal
-			td.price  {{invoice.currencySymbol}}{{invoice.subtotalPrice}}
-		tr
-			td.description VAT {{invoice.vatPercentage * 100}}%
-			td.price  {{invoice.currencySymbol}}{{invoice.vatAmount}}
-		tr
-			td.description Total
-			td.price {{invoice.currencySymbol}}{{invoice.totalPrice}}
+			tr
+				td.description Subtotal
+				td.price  {{invoice.currencySymbol}}{{invoice.subtotalPrice}}
+			tr
+				td.description VAT {{invoice.vatPercentage * 100}}%
+				td.price  {{invoice.currencySymbol}}{{invoice.vatAmount}}
+			tr
+				td.description Total
+				td.price {{invoice.currencySymbol}}{{invoice.totalPrice}}
 

@@ -96,11 +96,10 @@ textarea {
 
 table {
 	width: 100%;
-	/*
+	
 	border-spacing:0;
 	border-collapse:collapse;
-	*/
-	border: 1px solid black;
+	
 }
 
 table tr td {
@@ -157,9 +156,18 @@ input.new-item {
 
 #item-table td.price {
 	text-align: right;
+	width: 120px;
 }
 
 #item-table td.price input {
-	float: right;
 	text-align: right;
+}
+
+
+#item-table td.edit {
+	width: 60px;
+}
+
+#item-table input {
+	min-width: 90%;
 }
