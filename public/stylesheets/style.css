@@ -117,11 +117,12 @@ table tr td {
 }
 
 .invoice {
-	background-color: white;
+	background-color: #fff;
 	color: #222;
 	margin: 0px;
 	padding: 0px;
 	border: none;
+	margin-bottom: 100px;
 }
 
 .invoice-padded {
