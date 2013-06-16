@@ -17,6 +17,10 @@ appModule.factory('appService', function() {
 
 var globalInvoice = null;
 
+function formatMoney(v) {
+	return accounting.formatMoney(v, "", 2, ",", ".");
+}
+
 function InvoiceController($scope) {
 
 	// Construct the invoice
@@ -86,14 +90,19 @@ function InvoiceController($scope) {
   		return !isNaN(parseFloat(n)) && isFinite(n);
 	}
 
+	
+
 	$scope.updateSummary = function() {
+
 
 		var subtotalPrice = 0;
 
 		for (i in $scope.invoice.items) {
 			var item = $scope.invoice.items[i];
-			var value = parseInt(item.price, 10);
-
+			var rawPrice = item.price.replace(/\,/g,'')
+			item.price = formatMoney(rawPrice);
+			var value = parseFloat(rawPrice, 10);
+			// 
 			if (isNumber(value)) {
 				subtotalPrice += value;
 			}
@@ -106,9 +115,12 @@ function InvoiceController($scope) {
 		vat = vat.replace(/%$/, "");
 		vat /= 100.0;
 		
-		$scope.invoice.subtotalPrice = Math.round(subtotalPrice);
-		$scope.invoice.vatAmount = Math.round(subtotalPrice * vat);
-		$scope.invoice.totalPrice = $scope.invoice.subtotalPrice + $scope.invoice.vatAmount;
+		var roundedSubtotalPrice = subtotalPrice; //Math.round(subtotalPrice);
+		var roundedVatAmount = subtotalPrice * vat; //Math.round(subtotalPrice * vat);
+
+		$scope.invoice.subtotalPrice = formatMoney(roundedSubtotalPrice);
+		$scope.invoice.vatAmount = formatMoney(roundedVatAmount);
+		$scope.invoice.totalPrice = formatMoney(roundedSubtotalPrice + roundedVatAmount);
 
 	}; 
 
@@ -135,6 +147,7 @@ $(document).ready(function() {
 
 	// Autosize all inputs
 	$('input').autosizeInput();
+
 				
 });
 
