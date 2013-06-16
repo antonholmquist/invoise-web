@@ -31,8 +31,8 @@ function InvoiceController($scope) {
 	else {
 		invoice = {};
 		invoice.currencySymbol = '$';
-		invoice.from = "Company Name\nAddress1\nAddress2";
-		invoice.to = "Name\nAddress1\nAddress2";
+		invoice.from = "Company Name\nAddress";
+		invoice.to = "Name\nAddress";
 		invoice.id = "001";
 		invoice.items = [];
 		invoice.companyName = "Company Name";
