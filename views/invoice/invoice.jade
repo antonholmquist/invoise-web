@@ -42,8 +42,10 @@ div(ng-controller="InvoiceController")
 
 	table.table#item-table
 		thead
-			th.description Description
-			th.price Price
+			th.description(colspan="2")
+				input.description(type="text", ng-model="invoice.itemDescriptionLabel")
+			th.price
+				input.price(type="text", ng-model="invoice.itemPriceLabel")
 
 		tbody
 
@@ -52,7 +54,7 @@ div(ng-controller="InvoiceController")
 
 				// Existing items
 
-				td.description
+				td.description(colspan="2")
 					input(type="text", ng-model="item.description", placeholder="description")
 				td.price
 					input(type="text", ng-model="item.price", placeholder="price")
@@ -63,24 +65,34 @@ div(ng-controller="InvoiceController")
 			// Add new items
 			if !static
 				form(ng-submit="addItem()")
-					tr 
-						td.description
+					tr#new-item
+						td.description(colspan="2")
 							input.new-item(type="text", ng-model="newItem.description", placeholder="new item")
 						td.price
 							input.new-item(type="text", ng-model="newItem.price", placeholder="price")
 						td.edit
 							input(type="submit", value="add")
 
-			tr.blank
-				td(colspan="3") 
+			//tr.blank
+			//	td(colspan="3") 
 
 			tr.subtotal
-				td.description Subtotal
-				td.price  {{invoice.currencySymbol}}{{invoice.subtotalPrice}}
+				td
+				td.description
+					input(type="text", ng-model="invoice.subtotalLabel")
+				td.price {{invoice.subtotalPrice}}
+
 			tr.vat
-				td.description VAT {{invoice.vatPercentage * 100}}%
-				td.price  {{invoice.currencySymbol}}{{invoice.vatAmount}}
+				td
+				td.description
+					input(type="text", ng-model="invoice.vatLabel")
+				//VAT {{invoice.vatPercentage * 100}}%
+				td.price {{invoice.vatAmount}}
 			tr.total
-				td.description Total
-				td.price {{invoice.currencySymbol}}{{invoice.totalPrice}}
+				td
+				td.description
+					input(type="text", ng-model="invoice.totalLabel")
+				td.price {{invoice.totalPrice}}
+
+	textarea#message(ng-model="invoice.message")
 

@@ -31,13 +31,20 @@ function InvoiceController($scope) {
 	else {
 		invoice = {};
 		invoice.currencySymbol = '$';
-		invoice.vatPercentage = '0.1';
 		invoice.from = "Company Name\nAddress";
 		invoice.to = "Company Name\nAddress";
 		invoice.id = "001";
 		invoice.items = [];
 		invoice.companyName = "Company Name";
 		invoice.invoiceText = "Invoice";
+		invoice.itemDescriptionLabel = "Description";
+		invoice.itemPriceLabel = "Price ($)";
+
+		invoice.subtotalLabel = "Subtotal";
+		invoice.vatLabel = "Sales Tax (10%)";
+		invoice.totalLabel = "Total";
+		invoice.message = "Thank you for your purchase!";
+
 
 		var date = new Date();
 	    invoice.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
@@ -52,6 +59,11 @@ function InvoiceController($scope) {
 
 	// Copy to global scope to ajax can get it
 	globalInvoice = $scope.invoice;
+
+	// Watch vat label
+	$scope.$watch('invoice.vatLabel', function(newValue, oldValue) { 
+		$scope.updateSummary();
+	}, true);
 
 	// Watch items (third option enables deep linking)
 	$scope.$watch('invoice.items', function(newValue, oldValue) { 
@@ -75,9 +87,15 @@ function InvoiceController($scope) {
 			}
 			
 		}
+
+		// Parse VAT
+		// http://stackoverflow.com/questions/12059284/get-text-between-two-rounded-brackets
+		var vat = $scope.invoice.vatLabel.match(/\(([^)]+)\)/)[1];
+		vat = vat.replace(/%$/, "");
+		vat /= 100.0;
 		
-		$scope.invoice.subtotalPrice = subtotalPrice;
-		$scope.invoice.vatAmount = $scope.invoice.subtotalPrice * $scope.invoice.vatPercentage;
+		$scope.invoice.subtotalPrice = Math.round(subtotalPrice);
+		$scope.invoice.vatAmount = Math.round(subtotalPrice * vat);
 		$scope.invoice.totalPrice = $scope.invoice.subtotalPrice + $scope.invoice.vatAmount;
 
 	}; 

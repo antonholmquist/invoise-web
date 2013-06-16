@@ -17,14 +17,17 @@ input {
     min-width: 30px;
     max-width: 500px;
     /*transition: width 0.25s; */
-}
 
-
-
-input {
-	font-family: inherit;
+    font-family: inherit;
 	font-size: inherit;
 	color: inherit;
+}
+
+input[type=text] {
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	background-color: transparent;;
 }
 
 textarea {
@@ -36,6 +39,22 @@ textarea {
 	padding: 0px;
 	margin: 0px;
 }
+
+table {
+	width: 100%;
+	
+	border-spacing:0;
+	border-collapse:collapse;
+
+	line-height: 32px;
+	
+}
+
+
+table tr td {
+	/*border: 1px solid black;*/
+}
+
 
 /* The header side */
 .invoice input#company-name, .invoice input#invoice {
@@ -94,17 +113,6 @@ textarea {
 
 
 
-table {
-	width: 100%;
-	
-	border-spacing:0;
-	border-collapse:collapse;
-	
-}
-
-table tr td {
-	border: 0px solid transparent;
-}
 
 #from-header, #to-header {
 	font-weight: bold;
@@ -132,14 +140,37 @@ td input {
 	width: 50%;
 }
 
-input[type=text] {
-	border: none;
-	padding: 0px;
-	margin: 0px;
-}
 
 input.new-item {
 	border: 2px inset;
+}
+
+/* Item in the table */
+#item-table tr.item, #item-table tr#new-item {
+	border-bottom: 1px solid #ddd;
+}
+
+#item-table tr.total td.price, #item-table tr.total td.description {
+	border-top: 1px solid #ddd;
+}
+
+/* Subtotal etc, column */
+#item-table tr.new-item {
+	background-color: red;
+}
+
+
+
+#item-table thead tr {
+	background-color: #eee;
+}
+
+#item-table thead tr th input {
+	font-weight: bold;
+}
+
+#item-table thead tr th input.price {
+	text-align: right;
 }
 
 #item-table th.description {
@@ -164,6 +195,7 @@ input.new-item {
 }
 
 
+
 #item-table td.edit {
 	width: 60px;
 }
@@ -172,6 +204,44 @@ input.new-item {
 	min-width: 90%;
 }
 
-#item-table tr.blank {
-	border-top: 30px solid transparent;
+/* Push down subtotal a little */
+#item-table tr.subtotal td {
+	padding-top: 20px;
+}
+
+
+#item-table tr.subtotal, #item-table tr.vat {
+	line-height: 20px;
+}
+
+#item-table tr.total {
+	line-height: 40px;
+}
+
+#item-table tr.vat td {
+	padding-bottom: 10px;
+}
+
+#item-table tr.subtotal input,
+#item-table tr.vat input,
+#item-table tr.total input
+ {
+	font-weight: bold;
+}
+/* Subtotal etc, column */
+#item-table tr.subtotal td.description {
+	width: 100px;
+}
+
+
+/* Total row (the final row) */
+#item-table tr.total input, #item-table tr.total td {
+	margin-top: 6px;
+	font-size: 20px;
+}
+
+textarea#message {
+	margin-top: 40px;
+	width: 100%;
+	height: 120px;
 }
