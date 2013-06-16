@@ -142,6 +142,7 @@ function renderURL(url, callback) {
 			//page.set('viewportSize', {width:2000,height:480});
 			page.set('paperSize', { format: 'A4', orientation: 'portrait', border: '2cm' });
 			page.set('zoomFactor', 1);
+			
 
 			return page.open(url, function(status) {
 
