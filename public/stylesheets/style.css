@@ -5,11 +5,29 @@ body {
 
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
-	color: #eee;
+	color: #f4f4f4;
 	
 	line-height: 20px;
 	
 	background-color: #333;
+	padding-top: 30px;
+
+}
+
+h1 {
+	font-size: 36px;
+}
+
+#menu {
+	float:right;
+	background-color: red;
+	clear: both;
+
+}
+
+#menu button {
+	height: 40px;
+	width: 120px;
 
 }
 

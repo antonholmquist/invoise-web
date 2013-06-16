@@ -4,14 +4,20 @@ extends layout
 	
 block content
 	script(src='/javascripts/index_controller.js')
-	.container-fluid
-		.row-fluid
-			.span12
-				h1= title
-				p Create <strike>beautiful</strike> invoices. 
 
-				button#viewPDF View PDF
-				button#downloadPDF Download PDF
+	.container-fluid
+		#menu
+			button#downloadPDF Download PDF
+			// button#viewPDF View PDF
+
+		h1 invoise - free invoice generator.
+		p Create beautiful invoices online.
+
+				
+				
+
+					
+
 
 		.row-fluid
 			.span8
