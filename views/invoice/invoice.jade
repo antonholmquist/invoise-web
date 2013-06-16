@@ -65,20 +65,22 @@ div(ng-controller="InvoiceController")
 				form(ng-submit="addItem()")
 					tr 
 						td.description
-							input.new-item(type="text", ng-model="newItem.description", placeholder="description")
+							input.new-item(type="text", ng-model="newItem.description", placeholder="new item")
 						td.price
 							input.new-item(type="text", ng-model="newItem.price", placeholder="price")
 						td.edit
 							input(type="submit", value="add")
 
+			tr.blank
+				td(colspan="3") 
 
-			tr
+			tr.subtotal
 				td.description Subtotal
 				td.price  {{invoice.currencySymbol}}{{invoice.subtotalPrice}}
-			tr
+			tr.vat
 				td.description VAT {{invoice.vatPercentage * 100}}%
 				td.price  {{invoice.currencySymbol}}{{invoice.vatAmount}}
-			tr
+			tr.total
 				td.description Total
 				td.price {{invoice.currencySymbol}}{{invoice.totalPrice}}
 

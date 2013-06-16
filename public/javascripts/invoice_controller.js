@@ -31,7 +31,7 @@ function InvoiceController($scope) {
 	else {
 		invoice = {};
 		invoice.currencySymbol = '$';
-		invoice.vatPercentage = '0.25';
+		invoice.vatPercentage = '0.1';
 		invoice.from = "Company Name\nAddress";
 		invoice.to = "Company Name\nAddress";
 		invoice.id = "001";

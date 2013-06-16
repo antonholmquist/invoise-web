@@ -103,7 +103,7 @@ table {
 }
 
 table tr td {
-	border: 1px solid black;
+	border: 0px solid transparent;
 }
 
 #from-header, #to-header {
@@ -170,4 +170,8 @@ input.new-item {
 
 #item-table input {
 	min-width: 90%;
+}
+
+#item-table tr.blank {
+	border-top: 30px solid transparent;
 }
