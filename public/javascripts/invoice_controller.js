@@ -2,6 +2,8 @@
 
 function InvoiceController($scope) {
 
+	$scope.invoice = {'test' : 'test22'};
+
 	
 	$scope.currencySymbol = '$';
 	$scope.vatPercentage = '0.25';
