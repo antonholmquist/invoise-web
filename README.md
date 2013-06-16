@@ -42,6 +42,8 @@ To install:
 1. first you need to enable `multiverse` repo in Ubuntu. sudo vim /etc/apt/sources.list
 2. sudo apt-get update
 3. sudo apt-get install ttf-mscorefonts-installer
+4. Liberation Sans is pretty good option and renders decently on Linux.
+http://graphicdesign.stackexchange.com/questions/8827/helvetica-neue-equivalent-on-google-web-fonts
 
 # Run
 
