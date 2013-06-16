@@ -5,6 +5,7 @@ body {
 
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
+	color: #eee;
 	
 	line-height: 20px;
 	
@@ -12,9 +13,21 @@ body {
 
 }
 
-body {
-	
-	color: #eee;
+
+
+input {
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+}
+
+textarea {
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;	
+	border: none;
+	padding: 0px;
+	margin: 0px;
 }
 
 /* The header */
@@ -28,7 +41,6 @@ body {
 .invoice input#invoice {
 	float: right;
 	text-align: right;
-	/*color: #555;*/
 }
 
 .from, .to {	
@@ -56,7 +68,7 @@ table {
 
 .invoice {
 	background-color: white;
-	color: #333;
+	color: #222;
 	margin: 0px;
 	padding: 0px;
 	border: none;
@@ -76,20 +88,12 @@ td input {
 	width: 50%;
 }
 
-textarea {
-	border: none;
-	font-size: 14px;
-	padding: 0px;
-	color: #333;
-	margin: 0px;
-}
 
 
 input[type=text] {
 	border: none;
 	padding: 0px;
 	margin: 0px;
-	font-size: 14px;
 }
 
 input.new-item {
