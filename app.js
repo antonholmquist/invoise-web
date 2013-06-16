@@ -52,14 +52,14 @@ app.get('/invoice', routes.invoice);
 // 2. When the HTML is generated
 
 // Get invoice data and returns link to PDF
-app.post('/invoice/generate/pdf') {
-	
-}
+app.post('/invoice/generate/pdf', function(req, res) {
+
+});
 
 // Fetches the invoice and removes from disk
-app.get('/invoice/download/id') {
+app.get('/invoice/download/id', function(req, res) {
 
-}
+});
 
 app.get('/test', function(req, res) {
 	//res.send('<html ng-app><head><title>invoise</title><script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script></head><body style="background-color: red;">test</body></html>')
