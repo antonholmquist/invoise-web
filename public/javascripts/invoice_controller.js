@@ -50,8 +50,8 @@ function InvoiceController($scope) {
 
 		var subtotalPrice = 0;
 
-		for (i in $scope.items) {
-			var item = $scope.items[i];
+		for (i in $scope.invoice.items) {
+			var item = $scope.invoice.items[i];
 			subtotalPrice += parseInt(item.price, 10);
 		}
 		
@@ -61,11 +61,9 @@ function InvoiceController($scope) {
 
 		$scope.invoice.totalPrice = $scope.invoice.subtotalPrice + $scope.invoice.vatAmount;
 
+
 	}; $scope.updateSummary();
 
-	$scope.updateTo = function() {
-		$scope.invoice.totalPrice = 0;
-	}; $scope.updateSummary();
 
 	$scope.addItem = function() {
 		var item = {
