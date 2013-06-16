@@ -165,8 +165,15 @@ input.new-item {
 	background-color: #eee;
 }
 
+/*
 #item-table thead tr th input {
 	font-weight: bold;
+	padding: 10px;
+}*/
+
+#item-table input {
+	font-weight: bold;
+	padding: 6px;
 }
 
 #item-table thead tr th input.price {
