@@ -22,17 +22,25 @@ div(ng-controller="InvoiceController")
 		textarea(ng-model="invoice.to")
 
 	div#invoice-info
-		span Invoice ID: 
-		input(type="text", ng-model="invoice.id") 
-		<br/>
-		span Date:
-		input(type="text", ng-model="invoice.date") 
-		<br/>
-		span Due Date:
-		input(type="text", ng-model="invoice.dueDate")
+		table
+			tr
+				td.label
+					span Invoice ID:
+				td.value
+					input(type="text", ng-model="invoice.id")
+			tr
+				td.label
+					span Date:
+				td.value
+					input(type="text", ng-model="invoice.date") 
+			tr
+				td.label
+					span Due Date:
+				td.value
+					input(type="text", ng-model="invoice.dueDate")
+		
 
-
-	table.table
+	table.table#item-table
 		thead
 			th.description Description
 			th.price Price

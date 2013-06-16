@@ -30,6 +30,7 @@ input {
 textarea {
 	font-family: inherit;
 	font-size: inherit;
+	line-height: inherit;
 	color: inherit;	
 	border: none;
 	padding: 0px;
@@ -66,12 +67,44 @@ textarea {
 
 
 #invoice-info {
-	background-color: red;
+	/*background-color: red;*/
 	float: right;
 }
 
+#invoice-info tr {
+	/*background-color: red;
+	line-height: 30px;*/
+}
+
+#invoice-info span {
+	padding: 0;
+	margin: 0;
+}
+
+#invoice-info td.label {
+	/*background-color: green;*/
+	text-align: right;
+}
+
+#invoice-info td.value input {
+	float: right;
+	text-align: right;
+	/*background-color: green;*/
+}
+
+
+
 table {
 	width: 100%;
+	/*
+	border-spacing:0;
+	border-collapse:collapse;
+	*/
+	border: 1px solid black;
+}
+
+table tr td {
+	border: 1px solid black;
 }
 
 #from-header, #to-header {
@@ -100,8 +133,6 @@ td input {
 	width: 50%;
 }
 
-
-
 input[type=text] {
 	border: none;
 	padding: 0px;
@@ -112,18 +143,23 @@ input.new-item {
 	border: 2px inset;
 }
 
-th.description {
+#item-table th.description {
 	text-align: left;
 }
 
-th.price {
+#item-table th.price {
 	text-align: right;
 }
 
-td.description {
+#item-table td.description {
 	text-align: left;
 }
 
-td.price {
+#item-table td.price {
+	text-align: right;
+}
+
+#item-table td.price input {
+	float: right;
 	text-align: right;
 }
