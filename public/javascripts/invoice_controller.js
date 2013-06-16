@@ -1,24 +1,40 @@
+/*
+// declare a module
+var appModule = angular.module('appModule', []);
 
+// Create a service
+appModule.factory('appService', function() {
+  var serviceInstance;
+  
+
+
+  return serviceInstance;
+});
+*/
+
+var globalInvoice = null;
 
 function InvoiceController($scope) {
 
+
 	$scope.invoice = {'test' : 'test22'};
-
+	// Copy to global scope to ajax can get it
+	globalInvoice = $scope.invoice;
 	
-	$scope.currencySymbol = '$';
-	$scope.vatPercentage = '0.25';
+	$scope.invoice.currencySymbol = '$';
+	$scope.invoice.vatPercentage = '0.25';
 
-	$scope.from = "Company Name\nAdress";
-	$scope.to = "Company Name\nAdress";
-	$scope.invoiceID = "001";
+	$scope.invoice.from = "Company Name\nAdress";
+	$scope.invoice.to = "Company Name\nAdress";
+	$scope.invoice.id = "001";
 
 	var date = new Date();
-    $scope.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+    $scope.invoice.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
 
     date = new Date(date.getTime() + 1000 * 3600 * 24 * 30);
-    $scope.dueDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+    $scope.invoice.dueDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
 
-	$scope.items = [
+	$scope.invoice.items = [
 		{description:'item', price:500},
 	];
 
@@ -31,34 +47,34 @@ function InvoiceController($scope) {
 			subtotalPrice += parseInt(item.price, 10);
 		}
 		
-		$scope.subtotalPrice = subtotalPrice;
-		$scope.vatAmount = $scope.subtotalPrice * $scope.vatPercentage;
+		$scope.invoice.subtotalPrice = subtotalPrice;
+		$scope.invoice.vatAmount = $scope.invoice.subtotalPrice * $scope.invoice.vatPercentage;
 		
 
-	$scope.totalPrice = $scope.subtotalPrice + $scope.vatAmount;
+		$scope.invoice.totalPrice = $scope.invoice.subtotalPrice + $scope.invoice.vatAmount;
 
 	}; $scope.updateSummary();
 
 	$scope.updateTo = function() {
-		$scope.totalPrice = 0;
+		$scope.invoice.totalPrice = 0;
 	}; $scope.updateSummary();
 
 	$scope.addItem = function() {
 		var item = {
-			description: $scope.description,
-			price: $scope.price,
+			description: $scope.newItem.description,
+			price: $scope.newItem.price,
 		}
-		$scope.items.push(item);
+		$scope.invoice.items.push(item);
 
-		$scope.description = '';
-		$scope.price = '';
+		$scope.newItem.description = '';
+		$scope.newItem.price = '';
 
 		$scope.updateSummary();
 	};
 
 	$scope.removeItem = function(index) {
 		console.log("remove");
-		$scope.items.splice(index, 1);
+		$scope.invoice.items.splice(index, 1);
 		$scope.updateSummary();
 	};
 }

@@ -3,6 +3,7 @@
 $(document).ready(function() {
 	$("button#generatePDFButton").click(function(event) {
 
+		console.log("globalInvoice: " + globalInvoice.test);
 		
 		alert("hej");
 		var title = $("#input_title").val();

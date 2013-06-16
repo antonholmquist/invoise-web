@@ -7,28 +7,28 @@ div(ng-controller="InvoiceController")
 
 	div
 		label From:
-		textarea(ng-model="from")
+		textarea(ng-model="invoice.from")
 
 	div 
 		label To
-		textarea(ng-model="to")
+		textarea(ng-model="invoice.to")
 
 	div
 		span Invoice ID: 
-		input(type="text", ng-model="invoiceID")
+		input(type="text", ng-model="invoice.id")
 	div
 		span Date:
-		span {{date}}
+		span {{invoice.date}}
 	div
 		span Due Date:
-		span {{dueDate}}
+		span {{invoice.dueDate}}
 
 
 	table.table
 		thead
 			th Description
 			th Price
-		tr(ng-repeat="item in items")
+		tr(ng-repeat="item in invoice.items")
 			td {{item.description}}
 			td {{currencySymbol}}{{item.price}} 
 			td
@@ -37,20 +37,20 @@ div(ng-controller="InvoiceController")
 		form(ng-submit="addItem()")
 			tr 
 				td 
-					input(type="text", ng-model="description", placeholder="description")
+					input(type="text", ng-model="newItem.description", placeholder="description")
 				td 
-					input(type="text", ng-model="price", placeholder="price")
+					input(type="text", ng-model="newItem.price", placeholder="price")
 				td 
 					input(type="submit", value="add")
 
 
 		tr
 			td Subtotal
-			td {{currencySymbol}}{{subtotalPrice}}
+			td {{invoice.currencySymbol}}{{invoice.subtotalPrice}}
 		tr
 			td VAT {{vatPercentage}}%
-			td {{currencySymbol}}{{vatAmount}}
+			td {{invoice.currencySymbol}}{{invoice.vatAmount}}
 		tr
 			td Total
-			td {{currencySymbol}}{{totalPrice}}
+			td {{invoice.currencySymbol}}{{invoice.totalPrice}}
 
