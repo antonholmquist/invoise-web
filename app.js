@@ -77,14 +77,29 @@ app.post('/invoice/generate/pdf', function(req, res) {
 			}
 
 			var filename = generateRandomFilename('html');
-			var filePath = directory + filename;
+			var filepath = directory + filename;
 
-			fs.writeFile(filePath, html, function (err) {
+			// Write HTML to disk so phantom can access it
+			fs.writeFile(filepath, html, function (err) {
 				console.log('It\'s saved!');
 
-				var url = req.protocol + '://' + req.host + ':' + app.get('port') + '/temp/' + filename;
+				var htmlURL = req.protocol + '://' + req.host + ':' + app.get('port') + '/temp/' + filename;
 
-				res.json({'url': url});
+
+				renderURL(htmlURL, function(err, pdfFilename) {
+
+					var pdfURL = req.protocol + '://' + req.host + ':' + app.get('port') + '/temp/' + pdfFilename;
+
+					//res.json({'pdf': pdfURL});
+					res.json({'pdf': htmlURL});
+					/*
+					res.download(filePath, 'invoice.pdf', function (err) {
+						//fs.unlink(filePath, function(err) {
+
+						//});
+					});*/
+				});
+
 			});
 		});
 		
@@ -92,32 +107,11 @@ app.post('/invoice/generate/pdf', function(req, res) {
 
 });
 
-// Fetches the invoice and removes from disk
-app.get('/invoice/download/id', function(req, res) {
-
-});
-
-app.get('/test', function(req, res) {
-	//res.send('<html ng-app><head><title>invoise</title><script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script></head><body style="background-color: red;">test</body></html>')
-});
-
-app.get('/render', function (req, res) {
+function renderURL(url, callback) {
 
 	//res.send("test");
 	phantom.create(function(ph) {
 		ph.createPage(function(page) {
-
-			var url = req.protocol + '://' + req.host + ':' + app.get('port') + '/invoice';
-
-			//var url = 'https://www.google.se/search?q=phantomjs+text+color&oq=phantomjs+text+color&aqs=chrome.0.57j62l2.3128j0&sourceid=chrome&ie=UTF-8#sclient=psy-ab&q=phantomjs+color&oq=phantomjs+color&gs_l=serp.3..0i7j0j0i7i30j0i30.17531.17531.0.17715.1.1.0.0.0.0.68.68.1.1.0...0.0.0..1c.1.17.psy-ab.nGyQH9GRcYk&pbx=1&bav=on.2,or.r_cp.r_qf.&bvm=bv.47883778,d.bGE&fp=693ac66bf07dbf5c&biw=1201&bih=806';
-			//url = 'http://feber.se';
-			//url = 'http://uggedal.com/journal/phantomjs-default-background-color/';
-			//url = 'http://nooday.com/shop/umbrella-bootstrap-theme/?utm_source=builtwithbootstrap.com&utm_medium=display&utm_content=&utm_campaign=';
-			//url = 'http://foundation.zurb.com/docs/';
-			//url = 'http://www.99lime.com/elements/';
-			//url = 'http://twitter.github.io/bootstrap/';
-			console.log('render: ' + url);
-
 
 			// Set options
 			//page.set('viewportSize', {width:2000,height:480});
@@ -137,7 +131,8 @@ app.get('/render', function (req, res) {
 					} 
 
 					// Create a new filename
-					var filePath = directory + generateRandomFilename('pdf');
+					var pdfFilename = generateRandomFilename('pdf');
+					var filePath = directory + pdfFilename;
 
 
 					
@@ -150,13 +145,15 @@ app.get('/render', function (req, res) {
 
 						console.log("render finished: " + err);
 
+						callback(err, pdfFilename);
+
 						/*
 						// Send file
 						res.sendfile(filePath, function (err) {
 							fs.unlink(filePath, function(err) {
 
 							});
-						});*/
+						});
 
 						// Download instead
 						res.download(filePath, 'invoice.pdf', function (err) {
@@ -164,6 +161,7 @@ app.get('/render', function (req, res) {
 
 							//});
 						});
+						*/
 
 					});
 
@@ -175,6 +173,12 @@ app.get('/render', function (req, res) {
 			});
 		});
 	});
+
+};
+
+// Fetches the invoice and removes from disk
+app.get('/invoice/download/id', function(req, res) {
+
 });
 
 

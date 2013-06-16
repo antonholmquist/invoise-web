@@ -40,14 +40,15 @@ div(ng-controller="InvoiceController")
 			td
 				button(ng-click="removeItem($index)") remove
 
-		form(ng-submit="addItem()")
-			tr 
-				td 
-					input(type="text", ng-model="newItem.description", placeholder="description")
-				td 
-					input(type="text", ng-model="newItem.price", placeholder="price")
-				td 
-					input(type="submit", value="add")
+		if !static
+			form(ng-submit="addItem()")
+				tr 
+					td 
+						input(type="text", ng-model="newItem.description", placeholder="description")
+					td 
+						input(type="text", ng-model="newItem.price", placeholder="price")
+					td 
+						input(type="submit", value="add")
 
 
 		tr

@@ -16,35 +16,38 @@ var globalInvoice = null;
 
 function InvoiceController($scope) {
 
-	var initialInvoice = {};
+	// Construct the invoice
+	var invoice;
 
 	// If it was recieved to be statically, rendered, it will be recieved from here.
 	if (typeof globalStaticInvoice !== 'undefined') {
-    	initialInvoice = globalStaticInvoice;
+    	invoice = globalStaticInvoice;
+	}
+
+	// Else, create default values
+	else {
+		invoice = {};
+		invoice.currencySymbol = '$';
+		invoice.vatPercentage = '0.25';
+		invoice.from = "Company Name\nAdress";
+		invoice.to = "Company Name\nAdress";
+		invoice.id = "001";
+		invoice.items = [];
+
+		var date = new Date();
+	    invoice.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+
+		date = new Date(date.getTime() + 1000 * 3600 * 24 * 30);
+		invoice.dueDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
 	}
 
 
+	// Set the constructed invoice
+	$scope.invoice = invoice;
 
-	$scope.invoice = initialInvoice;
 	// Copy to global scope to ajax can get it
 	globalInvoice = $scope.invoice;
 	
-	$scope.invoice.currencySymbol = '$';
-	$scope.invoice.vatPercentage = '0.25';
-
-	$scope.invoice.from = "Company Name\nAdress";
-	$scope.invoice.to = "Company Name\nAdress";
-	$scope.invoice.id = "001";
-
-	var date = new Date();
-    $scope.invoice.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-
-    date = new Date(date.getTime() + 1000 * 3600 * 24 * 30);
-    $scope.invoice.dueDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-
-	$scope.invoice.items = [
-		{description:'item', price:500},
-	];
 
 	$scope.updateSummary = function() {
 

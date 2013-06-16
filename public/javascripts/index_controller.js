@@ -3,7 +3,7 @@
 $(document).ready(function() {
 	$("button#generatePDFButton").click(function(event) {
 
-		console.log("globalInvoice: " + globalInvoice.test);
+		console.log("globalInvoice: " + JSON.stringify(globalInvoice));
 		
 		
 		var data = globalInvoice;
@@ -19,7 +19,7 @@ $(document).ready(function() {
 				//alert(response.url);
 				//window.location(response.url);
 
-				window.open(response.url);
+				window.open(response.pdf);
 		});
 				
 		
