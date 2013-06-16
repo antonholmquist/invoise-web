@@ -197,7 +197,12 @@ input.new-item {
 
 
 #item-table td.edit {
-	width: 60px;
+	width: 80px;
+}
+
+#item-table td.edit input, #item-table td.edit button {
+	margin-left: 10px;
+	width: 70px;
 }
 
 #item-table input {
