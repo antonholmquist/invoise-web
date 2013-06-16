@@ -11,9 +11,10 @@ block content
 				h1= title
 				p Create <strike>beautiful</strike> invoices. 
 
-				button#generatePDFButton generate pdf
+				button#viewPDF View PDF
+				button#downloadPDF Download PDF
 
 		.row-fluid
 			.span8
-				.invoice
+				.invoice.invoice-padded
 					include invoice/invoice

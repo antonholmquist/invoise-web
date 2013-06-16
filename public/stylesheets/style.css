@@ -7,6 +7,7 @@ body {
 	line-height: 20px;
 	color: #eee;
 	background-color: #333;
+
 }
 
 h1 {
@@ -17,11 +18,17 @@ table {
 	width: 100%;
 }
 
+
 .invoice {
 	background-color: white;
 	color: #333;
 	margin: 0px;
 	padding: 0px;
+	border: none;
+}
+
+.invoice-padded {
+	padding: 60px;
 }
 
 .container-fluid {
@@ -32,4 +39,33 @@ table {
 
 td input {
 	width: 50%;
+}
+
+textarea {
+	border: none;
+}
+
+input[type=text] {
+	border: none;
+
+}
+
+input.new-item {
+	border: 2px inset;
+}
+
+th.description {
+	text-align: left;
+}
+
+th.price {
+	text-align: right;
+}
+
+td.description {
+	text-align: left;
+}
+
+td.price {
+	text-align: right;
 }

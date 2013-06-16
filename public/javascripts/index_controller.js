@@ -1,12 +1,9 @@
 
 
 $(document).ready(function() {
-	$("button#generatePDFButton").click(function(event) {
 
-		console.log("globalInvoice: " + JSON.stringify(globalInvoice));
-		
-		
-		var data = globalInvoice;
+	function pdfRequest(invoice, callback) {
+		var data = invoice;
 		
 		var request = $.ajax({
 			url: '/invoice/generate/pdf',
@@ -15,15 +12,23 @@ $(document).ready(function() {
 		});
 
 		request.done(function (response, statys, jqXHR) {
-			
-				//alert(response.url);
-				//window.location(response.url);
-
-				window.open(response.pdf);
+			callback(response);
 		});
-				
-		
+	};
+
+	$("button#viewPDF").click(function(event) {		
+		pdfRequest(globalInvoice, function(response) {
+			window.open(response.viewURL);
+		});
 	});
+
+	$("button#downloadPDF").click(function(event) {		
+		pdfRequest(globalInvoice, function(response) {
+			window.location.href = response.downloadURL;
+		});
+	});
+
+
 	
 	
 				

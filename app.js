@@ -38,7 +38,7 @@ function generateRandomFilename(ext) {
 				.substring(1);
 	};
 	
-	var random = s4();
+	var random = s4() + '-' + s4() + '-' + s4() + '-' + s4();;
 
 	var timestamp = new Date().getTime();
 
@@ -51,6 +51,33 @@ app.get('/invoice', routes.invoice);
 
 // 1. We have invoice data, generate HTML. Needs to be passed with jQuery call.
 // 2. When the HTML is generated
+
+app.get('/invoice/:type/:filename', function(req, res) {
+
+	var filename = req.params.filename;
+	var type = req.params.type; // download or view
+
+	var filepath = './temp/' + filename;
+
+	// View
+	if (type === 'view') {
+		console.log("send");
+		res.sendfile(filepath, function(err) {
+			console.log("send finished");
+			//fs.unlink(filepath, function(err) {}); // Remove
+		});
+		
+	} 
+
+	// Download
+	else if (type === 'download') {
+		res.download(filepath, 'invoice.pdf', function (err) {
+			fs.unlink(filepath, function(err) {}); // Remove
+		});
+	}
+
+	
+});
 
 // Get invoice data and returns link to PDF
 app.post('/invoice/generate/pdf', function(req, res) {
@@ -88,16 +115,14 @@ app.post('/invoice/generate/pdf', function(req, res) {
 
 				renderURL(htmlURL, function(err, pdfFilename) {
 
-					var pdfURL = req.protocol + '://' + req.host + ':' + app.get('port') + '/temp/' + pdfFilename;
+					var baseURL = req.protocol + '://' + req.host + ':' + app.get('port');
+
+					var viewURL = baseURL + '/invoice/view/' + pdfFilename;
+					var downloadURL = baseURL + '/invoice/download/' + pdfFilename;
 
 					//res.json({'pdf': pdfURL});
-					res.json({'pdf': htmlURL});
-					/*
-					res.download(filePath, 'invoice.pdf', function (err) {
-						//fs.unlink(filePath, function(err) {
-
-						//});
-					});*/
+					res.json({'viewURL': viewURL, 'downloadURL': downloadURL});
+					
 				});
 
 			});
