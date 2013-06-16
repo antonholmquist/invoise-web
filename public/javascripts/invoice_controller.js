@@ -16,8 +16,16 @@ var globalInvoice = null;
 
 function InvoiceController($scope) {
 
+	var initialInvoice = {};
 
-	$scope.invoice = {'test' : 'test22'};
+	// If it was recieved to be statically, rendered, it will be recieved from here.
+	if (typeof globalStaticInvoice !== 'undefined') {
+    	initialInvoice = globalStaticInvoice;
+	}
+
+
+
+	$scope.invoice = initialInvoice;
 	// Copy to global scope to ajax can get it
 	globalInvoice = $scope.invoice;
 	

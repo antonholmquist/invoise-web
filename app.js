@@ -24,6 +24,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/temp', express.static(path.join(__dirname, 'temp')));
 
 // development only
 if ('development' == app.get('env')) {
@@ -53,6 +54,41 @@ app.get('/invoice', routes.invoice);
 
 // Get invoice data and returns link to PDF
 app.post('/invoice/generate/pdf', function(req, res) {
+	console.log("generate pdf, body: " + JSON.stringify(req.body));
+	//res.send(req.body);
+
+	// Use res to render, but don't use reponse
+
+	var invoice = (req.body);
+
+	res.render('invoice/static', {'invoice': JSON.stringify(invoice), 'static' : true}, function(err, html) {
+  		console.log("html generated: " + html);
+
+  		// Write it to temp 
+  		var directory = './temp/';
+  		
+
+		// Check if path exists
+		fs.lstat(directory, function(err, stats) {
+
+			// Create directory if neccessary
+			if (err) {
+				fs.mkdirSync(directory);
+			}
+
+			var filename = generateRandomFilename('html');
+			var filePath = directory + filename;
+
+			fs.writeFile(filePath, html, function (err) {
+				console.log('It\'s saved!');
+
+				var url = req.protocol + '://' + req.host + ':' + app.get('port') + '/temp/' + filename;
+
+				res.json({'url': url});
+			});
+		});
+		
+	});
 
 });
 

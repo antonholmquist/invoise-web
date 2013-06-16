@@ -5,32 +5,21 @@ $(document).ready(function() {
 
 		console.log("globalInvoice: " + globalInvoice.test);
 		
-		alert("hej");
-		var title = $("#input_title").val();
-		var description = $("#input_description").val();
-		var url = $("#input_url").val();
-		var thumbnail = $("#input_thumbnail").val();
 		
-		console.log("ok:" + title);
-		
-		var data = {
-			title: title,
-			description: description,
-			url: url,
-			thumbnail: thumbnail
-		};
+		var data = globalInvoice;
 		
 		var request = $.ajax({
-			url: "/api/video/create/",
-			type: "POST",
+			url: '/invoice/generate/pdf',
+			type: 'POST',
 			data: data
 		});
 
 		request.done(function (response, statys, jqXHR) {
-				setTimeout(function(){
-					location.reload();
-				}, 500);
-				
+			
+				//alert(response.url);
+				//window.location(response.url);
+
+				window.open(response.url);
 		});
 				
 		
