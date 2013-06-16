@@ -263,7 +263,7 @@ input.new-item {
 
 #item-table tr.subtotal input,
 #item-table tr.vat input,
-#item-table tr.total input
+#item-table tr.total input, #item-table tr.total td
  {
 	font-weight: bold;
 }
