@@ -162,6 +162,9 @@ input.new-item {
 	border: 2px inset;
 }
 
+#item-table {
+	clear: both;
+}
 
 /* Item in the table */
 #item-table tr.item, #item-table tr#new-item {
@@ -176,6 +179,7 @@ input.new-item {
 #item-table tr.new-item {
 	background-color: red;
 }
+
 
 
 
