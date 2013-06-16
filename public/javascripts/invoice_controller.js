@@ -33,6 +33,8 @@ function InvoiceController($scope) {
 		invoice.to = "Company Name\nAdress";
 		invoice.id = "001";
 		invoice.items = [];
+		invoice.companyName = "Company Name";
+		invoice.invoiceText = "Invoice";
 
 		var date = new Date();
 	    invoice.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();

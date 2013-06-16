@@ -1,7 +1,6 @@
 
 script(src='/javascripts/invoice_controller.js')
 
-h1 Invoice
 
 // If static invoice is given, place it globally here.
 // It will later be readed be the invoice_controller
@@ -11,21 +10,24 @@ if static
 
 div(ng-controller="InvoiceController")
 
-	div
-		label From:<br/>
+	input#company-name(type="text", ng-model="invoice.companyName")
+	input#invoice(type="text", ng-model="invoice.invoiceText")
+
+	div.from
+		label#from-header From<br/>
 		textarea(ng-model="invoice.from")
 
-	div 
-		label To<br/>
+	div.to
+		label#to-header To<br/>
 		textarea(ng-model="invoice.to")
 
-	div
+	div#invoice-info
 		span Invoice ID: 
-		input(type="text", ng-model="invoice.id")
-	div
+		input(type="text", ng-model="invoice.id") 
+		<br/>
 		span Date:
-		input(type="text", ng-model="invoice.date")
-	div
+		input(type="text", ng-model="invoice.date") 
+		<br/>
 		span Due Date:
 		input(type="text", ng-model="invoice.dueDate")
 

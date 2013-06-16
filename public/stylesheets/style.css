@@ -2,23 +2,57 @@
 /* set a max-width for horizontal fluid layout and make it centered */
 
 body {
+
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
+	
 	line-height: 20px;
-	color: #eee;
+	
 	background-color: #333;
 
 }
 
+body {
+	
+	color: #eee;
+}
 
-h1 {
+/* The header */
+.invoice input#company-name, .invoice input#invoice {
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 40px;
 	margin-top: 0;
+}
+
+.invoice input#invoice {
+	float: right;
+	text-align: right;
+	/*color: #555;*/
+}
+
+.from, .to {	
+	float: left;
+}
+
+.from textArea, .to textArea {
+	height: 80px;
+	margin-right: 10px;
+}
+
+
+#invoice-info {
+	background-color: red;
+	float: right;
 }
 
 table {
 	width: 100%;
 }
 
+#from-header, #to-header {
+	font-weight: bold;
+}
 
 .invoice {
 	background-color: white;
@@ -44,11 +78,18 @@ td input {
 
 textarea {
 	border: none;
+	font-size: 14px;
+	padding: 0px;
+	color: #333;
+	margin: 0px;
 }
+
 
 input[type=text] {
 	border: none;
-
+	padding: 0px;
+	margin: 0px;
+	font-size: 14px;
 }
 
 input.new-item {
