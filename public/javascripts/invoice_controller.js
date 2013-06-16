@@ -12,6 +12,9 @@ appModule.factory('appService', function() {
 });
 */
 
+
+
+
 var globalInvoice = null;
 
 function InvoiceController($scope) {
@@ -89,4 +92,11 @@ function InvoiceController($scope) {
 		$scope.updateSummary();
 	};
 }
+
+$(document).ready(function() {
+
+	// Autosize all inputs
+	$('input').autosizeInput();
+				
+});
 

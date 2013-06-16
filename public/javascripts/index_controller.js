@@ -28,8 +28,8 @@ $(document).ready(function() {
 		});
 	});
 
+	// Autosize all inputs
+	$('input').autosizeInput();
 
-	
-	
 				
 });
