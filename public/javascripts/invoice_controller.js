@@ -52,6 +52,11 @@ function InvoiceController($scope) {
 		invoice.fromLabel = "From";
 		invoice.toLabel = "To";
 
+		invoice.items = [
+			{description: 'example 1', price: '100'},
+			{description: 'example 2', price: '200'},
+		];
+
 
 		var date = new Date();
 	    invoice.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
