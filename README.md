@@ -8,7 +8,12 @@ Connect: `ssh ubuntu@invoise.com`
 
 #Domain Name
 
+
+## Server 
+
 invoise.com registered on namecheap.com
+
+Ubuntu 12.04 LTS seems to be a good choice.
 
 ## Dependencies
 
@@ -25,7 +30,18 @@ Solution: Download the latest binary from here:
 http://phantomjs.org/download.html
 And replacing: /usr/bin/phantomjs
 
-/08
+To get where it's installed, you can have look at: `dpkg -L phantomjs`
+
+## Fonts on Ubuntu
+
+Ubuntu doesn't come with many fonts, have a look with `fc -list?
+
+To install basic fonts there is a Microsoft font package.
+
+To install:
+1. first you need to enable `multiverse` repo in Ubuntu. sudo vim /etc/apt/sources.list
+2. sudo apt-get update
+3. sudo apt-get install ttf-mscorefonts-installer
 
 # Run
 
@@ -44,6 +60,8 @@ On a development machine, just type:
 `node app.js`
 
 On a production machine port 80 needs to be specified and sudo may be required to bind to this port.
+
+`sudo PORT=80 node app.js`
 
 Nohup is used to get it running after logging out from shell. 
 
