@@ -81,8 +81,10 @@ table tr td {
 .from textArea, .to textArea {
 	height: 80px;
 	margin-right: 30px;
-
+	margin-bottom: 30px;
+	width: 180px;
 }
+
 
 
 #invoice-info {
@@ -90,24 +92,20 @@ table tr td {
 	float: right;
 }
 
-#invoice-info tr {
-	/*background-color: red;
-	line-height: 30px;*/
+#invoice-info {
+
 }
 
-#invoice-info span {
-	padding: 0;
-	margin: 0;
-}
-
-#invoice-info td.label {
-	/*background-color: green;*/
+#invoice-info td.label input {
 	text-align: right;
+	float: right;
+	padding: 1px;
 }
 
 #invoice-info td.value input {
 	float: right;
 	text-align: right;
+	font-weight: bold;
 	/*background-color: green;*/
 }
 
@@ -145,6 +143,7 @@ input.new-item {
 	border: 2px inset;
 }
 
+
 /* Item in the table */
 #item-table tr.item, #item-table tr#new-item {
 	border-bottom: 1px solid #ddd;
@@ -172,8 +171,11 @@ input.new-item {
 }*/
 
 #item-table input {
-	font-weight: bold;
 	padding: 6px;
+}
+
+#item-table thead input {
+	font-weight: bold;
 }
 
 #item-table thead tr th input.price {

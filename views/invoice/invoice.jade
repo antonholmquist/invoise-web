@@ -14,28 +14,31 @@ div(ng-controller="InvoiceController")
 	input#invoice(type="text", ng-model="invoice.invoiceText")
 
 	div.from
-		label#from-header From<br/>
+		input#from-header(type="text", ng-model="invoice.fromLabel") 
+		<br/>
 		textarea(ng-model="invoice.from")
 
 	div.to
-		label#to-header To<br/>
+		input#to-header(type="text", ng-model="invoice.toLabel")
+		<br/>
 		textarea(ng-model="invoice.to")
+		
 
 	div#invoice-info
 		table
 			tr
 				td.label
-					span Invoice ID:
+					input(type="text", ng-model="invoice.idLabel")
 				td.value
 					input(type="text", ng-model="invoice.id")
 			tr
 				td.label
-					span Date:
+					input(type="text", ng-model="invoice.dateLabel")
 				td.value
 					input(type="text", ng-model="invoice.date") 
 			tr
 				td.label
-					span Due Date:
+					input(type="text", ng-model="invoice.dueDateLabel")
 				td.value
 					input(type="text", ng-model="invoice.dueDate")
 		

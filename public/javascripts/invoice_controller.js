@@ -31,8 +31,8 @@ function InvoiceController($scope) {
 	else {
 		invoice = {};
 		invoice.currencySymbol = '$';
-		invoice.from = "Company Name\nAddress";
-		invoice.to = "Company Name\nAddress";
+		invoice.from = "Company Name\nAddress1\nAddress2";
+		invoice.to = "Name\nAddress1\nAddress2";
 		invoice.id = "001";
 		invoice.items = [];
 		invoice.companyName = "Company Name";
@@ -40,10 +40,17 @@ function InvoiceController($scope) {
 		invoice.itemDescriptionLabel = "Description";
 		invoice.itemPriceLabel = "Price ($)";
 
+		invoice.idLabel = "Invoice ID";
+		invoice.dateLabel = "Invoice Date";
+		invoice.dueDateLabel = "Due Date";
+
 		invoice.subtotalLabel = "Subtotal";
 		invoice.vatLabel = "Sales Tax (10%)";
 		invoice.totalLabel = "Total";
 		invoice.message = "Thank you for your purchase!";
+
+		invoice.fromLabel = "From";
+		invoice.toLabel = "To";
 
 
 		var date = new Date();
