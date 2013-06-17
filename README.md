@@ -17,7 +17,11 @@ Ubuntu 12.04 LTS seems to be a good choice.
 
 ## Dependencies
 
-### phantomjs-node
+### wkhtmltopdf
+
+Uses x system and handles fonts better then phantom.
+
+### phantomjs-node (deprecated)
 https://github.com/sgentle/phantomjs-node
 
 Phantom needs to be installed on machine
@@ -44,6 +48,46 @@ To install:
 3. sudo apt-get install ttf-mscorefonts-installer
 4. Liberation Sans is pretty good option and renders decently on Linux.
 http://graphicdesign.stackexchange.com/questions/8827/helvetica-neue-equivalent-on-google-web-fonts
+
+# Raw install log
+Amazon EC2  
+Ubuntu 12.04 LTS 64-bit
+
+```
+
+sudo vim /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get install phantomjs (needed?)
+sudo apt-get install git
+
+Install node (requires extra repo to be added)
+https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#ubuntu-mint
+
+Copy GitHub keys from local:
+scp ~/.ssh/amazon ubuntu@ec2-54-229-57-147.eu-west-1.compute.amazonaws.com:~/.ssh/id_rsa
+scp ~/.ssh/amazon.pub ubuntu@ec2-54-229-57-147.eu-west-1.compute.amazonaws.com:~/.ssh/id_rsa.pub
+
+mkdir projects
+cd projects
+git clone git@github.com:antonholmquist/invoise-web
+cd invoise-web/
+
+npm install
+// On dependency error, remove the node modules directory and try again
+
+// Install x server 
+sudo apt-get install xvfb
+sudo apt-get install wkhtmltopdf
+
+// Use latest phantomjs
+scp /Users/antonholmquist/Downloads/phantomjs-1.9.1-linux-x86_64\ 2/bin/phantomjs ubuntu@ec2-54-229-57-147.eu-west-1.compute.amazonaws.com:~/
+
+sudo mv ~/phantomjs /usr/bin/phantomjs
+
+// Microsoft core fonts
+sudo apt-get install ttf-mscorefonts-installer
+```
+
 
 # Run
 
