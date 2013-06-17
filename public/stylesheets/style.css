@@ -195,7 +195,7 @@ input.new-item {
 	padding: 10px;
 }*/
 
-#item-table input {
+#item-table input, #item-table td label {
 	padding: 6px;
 }
 

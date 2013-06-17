@@ -83,19 +83,22 @@ div(ng-controller="InvoiceController")
 				td
 				td.description
 					input(type="text", ng-model="invoice.subtotalLabel")
-				td.price {{invoice.subtotalPrice}}
+				td.price 
+					label {{invoice.subtotalPrice}}
 
 			tr.vat
 				td
 				td.description
 					input(type="text", ng-model="invoice.vatLabel")
 				//VAT {{invoice.vatPercentage * 100}}%
-				td.price {{invoice.vatAmount}}
+				td.price 
+					label {{invoice.vatAmount}}
 			tr.total
 				td
 				td.description
 					input(type="text", ng-model="invoice.totalLabel")
-				td.price {{invoice.totalPrice}}
+				td.price 
+					label {{invoice.totalPrice}}
 
 	textarea#message(ng-model="invoice.message")
 
