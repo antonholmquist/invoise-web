@@ -9,6 +9,10 @@ var express = require('express'),
 	fs = require('fs')
 ;
 
+var sys = require('sys');
+var exec = require('child_process').exec;
+var util = require('util');
+
 var routes = require('./routes');
 ;
 
@@ -139,9 +143,9 @@ function renderURL(url, callback) {
 		ph.createPage(function(page) {
 
 			// Set options
-			//page.set('viewportSize', {width:2000,height:480});
-			page.set('paperSize', { format: 'A4', orientation: 'portrait', border: '2cm' });
-			page.set('zoomFactor', 1);
+			//page.set('viewportSize', {width:1024,height:768});
+			//page.set('paperSize', { format: 'A4', orientation: 'portrait', border: '2cm' });
+			//page.set('zoomFactor', 1);
 			
 
 			return page.open(url, function(status) {
@@ -158,14 +162,15 @@ function renderURL(url, callback) {
 
 					// Create a new filename
 					var pdfFilename = generateRandomFilename('pdf');
-					var filePath = directory + pdfFilename;
+					var filepath = directory + pdfFilename;
 
 
 					
-
+					var child = exec("xvfb-run --server-args=\"-screen 0, 1024x768x24\" wkhtmltopdf " + url + " " + filepath, function(err, stdout, stderr) {
+	
 
 					// Render file
-					page.render(filePath, function(err) {
+					//page.render(filePath, function(err) {
 
 						ph.exit();
 
