@@ -22,7 +22,6 @@ h1 {
 
 #menu {
 	float:right;
-	background-color: red;
 	clear: both;
 
 }
@@ -179,7 +178,6 @@ input.new-item {
 
 /* Subtotal etc, column */
 #item-table tr.new-item {
-	background-color: red;
 }
 
 
