@@ -8,97 +8,115 @@ if static
 	script(type='text/javascript')
 		var globalStaticInvoice = !{invoice};
 
+
 div(ng-controller="InvoiceController")
+	.a4
+		.invoice
 
-	input#company-name(type="text", ng-model="invoice.companyName")
-	input#invoice(type="text", ng-model="invoice.invoiceText")
+			input#company-name(type="text", ng-model="invoice.companyName")
+			input#invoice(type="text", ng-model="invoice.invoiceText")
 
-	div.from
-		input#from-header(type="text", ng-model="invoice.fromLabel") 
-		<br/>
-		textarea(ng-model="invoice.from")
+			div.from
+				input#from-header(type="text", ng-model="invoice.fromLabel") 
+				<br/>
+				textarea(ng-model="invoice.from")
 
-	div.to
-		input#to-header(type="text", ng-model="invoice.toLabel")
-		<br/>
-		textarea(ng-model="invoice.to")
-		
+			div.to
+				input#to-header(type="text", ng-model="invoice.toLabel")
+				<br/>
+				textarea(ng-model="invoice.to")
+				
 
-	div#invoice-info
-		table
-			tr
-				td.label
-					input(type="text", ng-model="invoice.idLabel")
-				td.value
-					input(type="text", ng-model="invoice.id")
-			tr
-				td.label
-					input(type="text", ng-model="invoice.dateLabel")
-				td.value
-					input(type="text", ng-model="invoice.date") 
-			tr
-				td.label
-					input(type="text", ng-model="invoice.dueDateLabel")
-				td.value
-					input(type="text", ng-model="invoice.dueDate")
-		
 
-	table.table#item-table
-		thead
-			th.description(colspan="2")
-				input.description(type="text", ng-model="invoice.itemDescriptionLabel")
-			th.price
-				input.price(type="text", ng-model="invoice.itemPriceLabel")
+			div#invoice-info
+				table
+					tr
+						td.label
+							input(type="text", ng-model="invoice.idLabel")
+						td.value
+							input(type="text", ng-model="invoice.id")
+					tr
+						td.label
+							input(type="text", ng-model="invoice.dateLabel")
+						td.value
+							input(type="text", ng-model="invoice.date") 
+					tr
+						td.label
+							input(type="text", ng-model="invoice.dueDateLabel")
+						td.value
+							input(type="text", ng-model="invoice.dueDate")
 
-		tbody
+			table.table#item-table
+				thead
+					th.description(colspan="2")
+						input.description(type="text", ng-model="invoice.itemDescriptionLabel")
+					th.price
+						input.price(type="text", ng-model="invoice.itemPriceLabel")
 
-			// Loop
-			tr.item(ng-repeat="item in invoice.items")
+				tbody
 
-				// Existing items
+					// Loop
+					tr.item(ng-repeat="item in invoice.items")
 
-				td.description(colspan="2")
-					input(type="text", ng-model="item.description", placeholder="description")
-				td.price
-					input(type="text", ng-model="item.price", placeholder="price")
-				if !static
-					td.edit
-						button(ng-click="removeItem($index)") remove
+						// Existing items
 
-			// Add new items
-			if !static
-				form(ng-submit="addItem()")
-					tr#new-item
 						td.description(colspan="2")
-							input.new-item(type="text", ng-model="newItem.description", placeholder="new item")
+							input(type="text", ng-model="item.description", placeholder="description")
 						td.price
-							input.new-item(type="text", ng-model="newItem.price", placeholder="price")
-						td.edit
-							input(type="submit", value="add")
+							input(type="text", ng-model="item.price", placeholder="price")
+						if !static
+							td.edit
+								button(ng-click="removeItem($index)") remove
 
-			//tr.blank
-			//	td(colspan="3") 
+					// Add new items
+					if !static
+						form(ng-submit="addItem()")
+							tr#new-item
+								td.description(colspan="2")
+									input.new-item(type="text", ng-model="newItem.description", placeholder="new item")
+								td.price
+									input.new-item(type="text", ng-model="newItem.price", placeholder="price")
+								td.edit
+									input(type="submit", value="add")
 
-			tr.subtotal
-				td
-				td.description
-					input(type="text", ng-model="invoice.subtotalLabel")
-				td.price 
-					label {{invoice.subtotalPrice}}
+					//tr.blank
+					//	td(colspan="3") 
 
-			tr.vat
-				td
-				td.description
-					input(type="text", ng-model="invoice.vatLabel")
-				//VAT {{invoice.vatPercentage * 100}}%
-				td.price 
-					label {{invoice.vatAmount}}
-			tr.total
-				td
-				td.description
-					input(type="text", ng-model="invoice.totalLabel")
-				td.price 
-					label {{invoice.totalPrice}}
+					tr.subtotal
+						td
+						td.description
+							input(type="text", ng-model="invoice.subtotalLabel")
+						td.price 
+							label {{invoice.subtotalPrice}}
 
-	textarea#message(ng-model="invoice.message")
+					tr.vat
+						td
+						td.description
+							input(type="text", ng-model="invoice.vatLabel")
+						//VAT {{invoice.vatPercentage * 100}}%
+						td.price 
+							label {{invoice.vatAmount}}
+					tr.total
+						td
+						td.description
+							input(type="text", ng-model="invoice.totalLabel")
+						td.price 
+							label {{invoice.totalPrice}}
+
+			textarea#message(ng-model="invoice.message")
+
+			#footer
+				hr
+				table#footer-table
+					tr
+						td.footer
+							textarea(ng-model="invoice.from")
+							
+						td.footer
+							textarea(ng-model="invoice.footer_column_0", placeholder="footer column 1")
+						td.footer
+							textarea(ng-model="invoice.footer_column_1", placeholder="footer column 2")
+						td.footer
+							textarea(ng-model="invoice.footer_column_2", placeholder="footer column 3")
+
 
