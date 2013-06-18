@@ -138,75 +138,52 @@ app.post('/invoice/generate/pdf', function(req, res) {
 
 function renderURL(url, callback) {
 
-	//res.send("test");
-	phantom.create(function(ph) {
-		ph.createPage(function(page) {
+	var directory = './temp/';
 
-			// Set options
-			//page.set('viewportSize', {width:1024,height:768});
-			//page.set('paperSize', { format: 'A4', orientation: 'portrait', border: '2cm' });
-			//page.set('zoomFactor', 1);
-			
+	// Check if path exists
+	fs.lstat(directory, function(err, stats) {
 
-			return page.open(url, function(status) {
+		// Create directory if neccessary
+		if (err) {
+			fs.mkdirSync(directory);
+		} 
 
-				var directory = './temp/';
+		// Create a new filename
+		var pdfFilename = generateRandomFilename('pdf');
+		var filepath = directory + pdfFilename;
 
-				// Check if path exists
-				fs.lstat(directory, function(err, stats) {
+		var margin = '15mm';
+		var options = 
+		' --margin-bottom ' + margin +
+		' --margin-left ' + margin +	
+		' --margin-right ' + margin +
+		' --margin-top ' + margin;
+		var child = exec("xvfb-run --server-args=\"-screen 0, 1024x768x24\" wkhtmltopdf " + options + ' ' + url + " " + filepath, function(err, stdout, stderr) {
+			console.log("render finished: " + err);
 
-					// Create directory if neccessary
-					if (err) {
-						fs.mkdirSync(directory);
-					} 
+			callback(err, pdfFilename);
 
-					// Create a new filename
-					var pdfFilename = generateRandomFilename('pdf');
-					var filepath = directory + pdfFilename;
+			/*
+			// Send file
+			res.sendfile(filePath, function (err) {
+				fs.unlink(filePath, function(err) {
 
-					var margin = '15mm';
-					var options = 
-					' --margin-bottom ' + margin +
-					' --margin-left ' + margin +	
-					' --margin-right ' + margin +
-					' --margin-top ' + margin;
-					var child = exec("xvfb-run --server-args=\"-screen 0, 1024x768x24\" wkhtmltopdf " + options + ' ' + url + " " + filepath, function(err, stdout, stderr) {
-	
-
-					// Render file
-					//page.render(filePath, function(err) {
-
-						ph.exit();
-
-						console.log("render finished: " + err);
-
-						callback(err, pdfFilename);
-
-						/*
-						// Send file
-						res.sendfile(filePath, function (err) {
-							fs.unlink(filePath, function(err) {
-
-							});
-						});
-
-						// Download instead
-						res.download(filePath, 'invoice.pdf', function (err) {
-							//fs.unlink(filePath, function(err) {
-
-							//});
-						});
-						*/
-
-					});
-
-
-
-					
 				});
-
 			});
+
+			// Download instead
+			res.download(filePath, 'invoice.pdf', function (err) {
+				//fs.unlink(filePath, function(err) {
+
+				//});
+			});
+			*/
+
 		});
+
+
+
+		
 	});
 
 };
