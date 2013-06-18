@@ -57,16 +57,21 @@ textarea {
 	border: none;
 	padding: 0px;
 	margin: 0px;
+	resize: none;
 }
 
 table {
-	width: 100%;
+	/*width: 100%;*/
+	position: relative;
 	
 	border-spacing:0;
 	border-collapse:collapse;
 
-	line-height: 32px;
 	
+}
+
+table#item-table {
+	line-height: 32px;
 }
 
 
@@ -74,12 +79,35 @@ table tr td {
 	/*border: 1px solid black;*/
 }
 
+/* Ths A4 paper 
+A4 210 × 297 
+*/
+
+.a4 {
+	background-color: white;
+	position: relative; /* Needed for absolute child divs to be positioned relative to it */
+	width: 800px;
+	height: 1131px;
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 100px;
+	margin-top: 40px;
+}
+
+/* The invoice content 
+This is the content of the paper.
+*/
+.invoice {
+	color: #222;
+	padding: 60px;
+	width: 680px;
+}
 
 /* The header side */
 .invoice input#company-name, .invoice input#invoice {
 	font-size: 30px;
 	font-weight: bold;
-	margin-bottom: 40px;
+	margin-bottom: 60px;
 	margin-top: 0;
 	float:left;
 }
@@ -135,17 +163,16 @@ table tr td {
 	font-weight: bold;
 }
 
-.invoice {
-	background-color: #fff;
-	color: #222;
-	margin: 0px;
-	padding: 0px;
-	border: none;
-	margin-bottom: 100px;
-}
 
+
+/* 
+	
+*/
 .invoice-padded {
-	padding: 60px;
+	/*padding: 60px;
+	padding-bottom: 10px;*/
+
+	
 }
 
 .container-fluid {
@@ -165,6 +192,7 @@ input.new-item {
 
 #item-table {
 	clear: both;
+	width: 100%;
 }
 
 /* Item in the table */
@@ -278,7 +306,35 @@ input.new-item {
 }
 
 textarea#message {
-	margin-top: 40px;
-	width: 100%;
+	margin-top: 80px;
 	height: 120px;
+	width: 100%;
 }
+
+#footer {
+	position: absolute;
+	top: 1000px;
+	width: 680px;
+}
+
+#footer table {
+	width: 100%;
+}
+
+td.footer {
+	left: 0px;
+	width: 25%;
+}
+
+hr { display: block; height: 1px;
+    border: 0; border-top: 1px solid #ccc;
+    margin: 1em 0; padding: 0; }
+
+td.footer textarea {
+	height: 60px;
+	font-size: 12px;
+	line-height: 16px;
+	color: #555;
+	width: 90%;
+}
+
