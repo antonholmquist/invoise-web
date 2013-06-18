@@ -152,12 +152,13 @@ function renderURL(url, callback) {
 		var pdfFilename = generateRandomFilename('pdf');
 		var filepath = directory + pdfFilename;
 
-		var margin = '15mm';
+		var margin = '0mm';
 		var options = 
 		' --margin-bottom ' + margin +
 		' --margin-left ' + margin +	
 		' --margin-right ' + margin +
-		' --margin-top ' + margin;
+		' --margin-top ' + margin + 
+		' --zoom 1.3'; // Why is this zoom factor needed? Why is it like the browser window is larger than the page content. Can we change it?
 		var child = exec("xvfb-run --server-args=\"-screen 0, 1024x768x24\" wkhtmltopdf " + options + ' ' + url + " " + filepath, function(err, stdout, stderr) {
 			console.log("render finished: " + err);
 
