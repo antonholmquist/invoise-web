@@ -164,9 +164,13 @@ function renderURL(url, callback) {
 					var pdfFilename = generateRandomFilename('pdf');
 					var filepath = directory + pdfFilename;
 
-
-					
-					var child = exec("xvfb-run --server-args=\"-screen 0, 1024x768x24\" wkhtmltopdf " + url + " " + filepath, function(err, stdout, stderr) {
+					var margin = '15mm';
+					var options = 
+					' --margin-bottom ' + margin +
+					' --margin-left ' + margin +	
+					' --margin-right ' + margin +
+					' --margin-top ' + margin;
+					var child = exec("xvfb-run --server-args=\"-screen 0, 1024x768x24\" wkhtmltopdf " + options + ' ' + url + " " + filepath, function(err, stdout, stderr) {
 	
 
 					// Render file
