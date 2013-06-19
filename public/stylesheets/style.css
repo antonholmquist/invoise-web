@@ -13,10 +13,23 @@ body {
 
 	-webkit-font-smoothing: antialiased;
 
+	padding: 0px;
+	margin: 0px;
+
 }
 
 h1 {
-	font-size: 36px;
+	font-size: 75px;
+	font-family: 'Berkshire Swash', cursive;
+	color: #333;
+	text-transform: lowercase;
+	margin-bottom: 36px;
+}
+
+p {
+	font-family: Gudea;
+	color: #333;
+	font-size: 18px;
 }
 
 #menu {
