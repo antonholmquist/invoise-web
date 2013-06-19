@@ -5,14 +5,30 @@ extends layout
 block content
 	script(src='//cdnjs.cloudflare.com/ajax/libs/spin.js/1.2.7/spin.min.js')	
 	script(src='/javascripts/index_controller.js')
+	script(src='/javascripts/twitter.js')
 
 	.container-fluid
 		#menu
-			button#downloadPDF Download PDF
+			a.twitter-share-button(href='https://twitter.com/share', data-url='http://invoise.com', data-text='Create a beautiful invoice online.', data-size='large') Tweet
+			//br
+			//br
+			//br
+			//button#downloadPDF Download PDF
 			// button#viewPDF View PDF
 
-		h1 INVOISE
-		p Create a beautiful invoice and get the pdf.
+
+
+		h1 
+			img#heart(src="/images/heart.png")
+			| INVOISE
+		div#tagline
+			p Create a beautiful invoice and get the pdf.
+		div#download
+			p 
+				a#download(href="") Download
+				img#download(src="/images/download.png")
+				
+		div.clear
 
 				
 		//.invoice.invoice-padded

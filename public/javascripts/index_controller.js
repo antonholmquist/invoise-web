@@ -22,7 +22,8 @@ $(document).ready(function() {
 		});
 	});
 
-	$("button#downloadPDF").click(function(event) {
+	$("a#download").click(function(event) {
+
 
 var opts = {
   lines: 13, // The number of lines to draw
@@ -43,7 +44,7 @@ var opts = {
 		//this.appendChild(spinner.el);	
 		//$("button#downloadPDF").hide();
 		pdfRequest(globalInvoice, function(response) {
-			$("button#downloadPDF").show();
+			$("a#download").show();
 			//spinner.stop();
 			window.location.href = response.downloadURL;
 		});
