@@ -28,7 +28,18 @@ function InvoiceController($scope) {
 
 	// If it was recieved to be statically, rendered, it will be recieved from here.
 	if (typeof globalStaticInvoice !== 'undefined') {
-    	invoice = globalStaticInvoice;
+		invoice = globalStaticInvoice;
+
+		// Avoid placeholders
+		if (invoice.footer_column_0 === undefined) {
+			invoice.footer_column_0 = ' ';
+		}
+		if (invoice.footer_column_1 === undefined) {
+                        invoice.footer_column_1 = ' ';
+                }
+		if (invoice.footer_column_2 === undefined) {
+                        invoice.footer_column_2 = ' ';
+                } 
 	}
 
 	// Else, create default values
