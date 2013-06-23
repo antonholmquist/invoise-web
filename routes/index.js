@@ -3,10 +3,6 @@
  * GET home page.
  */
 
-exports.index = function(req, res){
-	res.render('index', { title: 'invoise' });
-};
-
 // Invoice
 exports.invoice = function(req, res){
 	res.render('invoice/static');

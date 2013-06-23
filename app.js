@@ -6,15 +6,14 @@
 var express = require('express'),
 	http = require('http'), path = require('path'),
 	phantom = require('phantom'),
-	fs = require('fs')
-;
+	fs = require('fs');
 
 var sys = require('sys');
 var exec = require('child_process').exec;
 var util = require('util');
 
 var routes = require('./routes');
-;
+var locale = require('./locale');
 
 var app = express();
 
@@ -51,8 +50,19 @@ function generateRandomFilename(ext) {
 
 };
 
-app.get('/', routes.index);
 app.get('/invoice', routes.invoice);
+
+app.get('/', function(req, res) {
+	res.redirect('/en');
+});
+
+app.get('/en', function(req, res) {
+	res.render('index', locale.en());
+});
+
+app.get('/se', function(req, res) {
+	res.render('index', locale.se());
+});
 
 // 1. We have invoice data, generate HTML. Needs to be passed with jQuery call.
 // 2. When the HTML is generated
