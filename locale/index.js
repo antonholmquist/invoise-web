@@ -88,7 +88,7 @@ exports.se = function() {
 	invoice.dateLabel = "Fakturadatum";
 	invoice.dueDateLabel = "Förfallodatum";
 
-	invoice.subtotalLabel = "Symma";
+	invoice.subtotalLabel = "Summa";
 	invoice.vatLabel = "Moms (25%)";
 	invoice.totalLabel = "Att betala";
 	invoice.message = "Tack för ditt köp!";
