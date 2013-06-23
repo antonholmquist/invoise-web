@@ -142,7 +142,7 @@ app.post('/invoice/generate/pdf', function(req, res) {
 					var downloadURL = baseURL + '/invoice/download/' + pdfFilename;
 
 					//res.json({'pdf': pdfURL});
-					res.json({'viewURL': viewURL, 'downloadURL': downloadURL});
+					res.json({'viewURL': viewURL, 'downloadURL': downloadURL, 'htmlURL': htmlURL});
 					
 				});
 
