@@ -1,13 +1,13 @@
 
-script(src='/javascripts/invoice_controller.js')
 
 
 // If static invoice is given, place it globally here.
 // It will later be readed be the invoice_controller
 if static
 	script(type='text/javascript')
-		var globalStaticInvoice = !{invoice};
+		var globalStaticInvoice = !{JSON.stringify(invoice)};
 
+script(src='/javascripts/invoice_controller.js')
 
 div(ng-controller="InvoiceController")
 	.a4

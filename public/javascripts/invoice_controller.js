@@ -44,7 +44,8 @@ function InvoiceController($scope) {
 
 	// Else, create default values
 	else {
-		
+		invoice = {};
+		invoice.invoiceText = "_invalid_ invoice variable missing";		
 	}
 
 	// Set the constructed invoice
