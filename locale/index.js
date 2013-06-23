@@ -22,7 +22,7 @@ exports.countries = function() {
 
 exports.en = function() {
 	var a = {};
-	a.tagLine = "Create a beautiful invoice and get the pdf."
+	a.tagLine = "Create a free beautiful invoice online and get the pdf."
 	a.download = "Download";
 	a.add = "Add";
 	a.remove = "Remove";
@@ -67,7 +67,7 @@ exports.en = function() {
 
 exports.se = function() {
 	var a = {};
-	a.tagLine = "Skapa en faktura och ladda ner som pdf."
+	a.tagLine = "Skapa en gratis faktura online och ladda ner som pdf."
 	a.download = "Ladda ner";
 	a.add = "Lägg till";
 	a.remove = "Ta bort";
