@@ -31,6 +31,14 @@ block content
 				
 		div.clear
 
-				
+
+						
 		//.invoice.invoice-padded
 		include invoice/invoice
+
+		#country-list
+			each country in countries
+				each countryName, countryCode in country
+					a(href='/#{countryCode}') #{countryName}
+					<br/>
+

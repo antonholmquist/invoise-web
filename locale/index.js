@@ -1,4 +1,25 @@
 
+
+exports.countries = function() {
+	var l = {
+		'se': 'Sverige',
+		'en': 'USA'
+	};
+
+	var list = [];
+
+	for (i in l) {
+		var key = i;
+		var value = l[i];
+
+		var object = {};
+		object[key] = value;
+		list.push(object);
+	}
+
+	return list;
+}
+
 exports.en = function() {
 	var a = {};
 	a.tagLine = "Create a beautiful invoice and get the pdf."
@@ -69,7 +90,7 @@ exports.se = function() {
 
 	invoice.subtotalLabel = "Symma";
 	invoice.vatLabel = "Moms (25%)";
-	invoice.totalLabel = "Add betala";
+	invoice.totalLabel = "Att betala";
 	invoice.message = "Tack för ditt köp!";
 
 	invoice.fromLabel = "Från";
@@ -77,7 +98,7 @@ exports.se = function() {
 
 	invoice.footerColumn0 = "Telefon:\nxxx-xxx xx xx";
 	invoice.footerColumn1 = "E-post:\nnamn@företag.se";
-	invoice.footerColumn2 = "Orgnr: xxx\nMomsregnr: xxx\nGodkänd för F-skatt";
+	invoice.footerColumn2 = "Org.nr: xxx\nMomsreg.nr: xxx\nGodkänd för F-skatt";
 
 	invoice.items = [
 		{description: 'exempel 1', price: '100'},
