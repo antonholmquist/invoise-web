@@ -26,65 +26,31 @@ function InvoiceController($scope) {
 	// Construct the invoice
 	var invoice;
 
-	// If it was recieved to be statically, rendered, it will be recieved from here.
+	// If pagw was recieved to be rendered, invoice data will be received from here.
 	if (typeof globalStaticInvoice !== 'undefined') {
 		invoice = globalStaticInvoice;
 
 		// Avoid placeholders
-		if (invoice.footer_column_0 === undefined) {
-			invoice.footer_column_0 = ' ';
+		if (invoice.footerColumn0 === undefined) {
+			invoice.footerColumn0 = ' ';
 		}
-		if (invoice.footer_column_1 === undefined) {
-                        invoice.footer_column_1 = ' ';
-                }
-		if (invoice.footer_column_2 === undefined) {
-                        invoice.footer_column_2 = ' ';
-                } 
+		if (invoice.footerColumn1 === undefined) {
+			invoice.footerColumn1 = ' ';
+		}
+		if (invoice.footerColumn2 === undefined) {
+			invoice.footerColumn2 = ' ';
+		} 
 	}
 
 	// Else, create default values
 	else {
-		invoice = {};
-		invoice.currencySymbol = '$';
-		invoice.from = "Company Name\nAddress";
-		invoice.to = "Name\nAddress";
-		invoice.id = "001";
-		invoice.items = [];
-		invoice.companyName = "Company Name";
-		invoice.invoiceText = "Invoice";
-		invoice.itemDescriptionLabel = "Description";
-		invoice.itemPriceLabel = "Price ($)";
-
-		invoice.idLabel = "Invoice ID";
-		invoice.dateLabel = "Invoice Date";
-		invoice.dueDateLabel = "Due Date";
-
-		invoice.subtotalLabel = "Subtotal";
-		invoice.vatLabel = "Sales Tax (10%)";
-		invoice.totalLabel = "Total";
-		invoice.message = "Thank you for your purchase!";
-
-		invoice.fromLabel = "From";
-		invoice.toLabel = "To";
-
-		invoice.items = [
-			{description: 'example 1', price: '100'},
-			{description: 'example 2', price: '200'},
-		];
-
-
-		var date = new Date();
-	    invoice.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-
-		date = new Date(date.getTime() + 1000 * 3600 * 24 * 30);
-		invoice.dueDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+		
 	}
-
 
 	// Set the constructed invoice
 	$scope.invoice = invoice;
 
-	// Copy to global scope to ajax can get it
+	// Copy to global scope so ajax can get it
 	globalInvoice = $scope.invoice;
 
 	// Watch vat label

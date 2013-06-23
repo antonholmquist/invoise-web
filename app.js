@@ -57,11 +57,11 @@ app.get('/', function(req, res) {
 });
 
 app.get('/en', function(req, res) {
-	res.render('index', locale.en());
+	res.render('index', {'locale': locale.en()});
 });
 
 app.get('/se', function(req, res) {
-	res.render('index', locale.se());
+	res.render('index', {'locale': locale.se()});
 });
 
 // 1. We have invoice data, generate HTML. Needs to be passed with jQuery call.

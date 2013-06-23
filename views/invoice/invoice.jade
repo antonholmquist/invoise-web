@@ -66,7 +66,7 @@ div(ng-controller="InvoiceController")
 							input(type="text", ng-model="item.price", placeholder="price")
 						if !static
 							td.edit
-								button(ng-click="removeItem($index)") remove
+								button(ng-click="removeItem($index)") #{locale.remove}
 
 					// Add new items
 					if !static
@@ -77,7 +77,7 @@ div(ng-controller="InvoiceController")
 								td.price
 									input.new-item(type="text", ng-model="newItem.price", placeholder="price")
 								td.edit
-									input(type="submit", value="add")
+									input(type="submit", value="#{locale.add}")
 
 					//tr.blank
 					//	td(colspan="3") 
@@ -113,10 +113,10 @@ div(ng-controller="InvoiceController")
 							textarea(ng-model="invoice.from")
 							
 						td.footer
-							textarea(ng-model="invoice.footer_column_0", placeholder="footer column 1")
+							textarea(ng-model="invoice.footerColumn0", placeholder="footer 1")
 						td.footer
-							textarea(ng-model="invoice.footer_column_1", placeholder="footer column 2")
+							textarea(ng-model="invoice.footerColumn1", placeholder="footer 2")
 						td.footer
-							textarea(ng-model="invoice.footer_column_2", placeholder="footer column 3")
+							textarea(ng-model="invoice.footerColumn2", placeholder="footer 3")
 
 

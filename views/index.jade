@@ -4,8 +4,14 @@ extends layout
 	
 block content
 	script(src='//cdnjs.cloudflare.com/ajax/libs/spin.js/1.2.7/spin.min.js')	
-	script(src='/javascripts/index_controller.js')
 	script(src='/javascripts/twitter.js')
+
+	// By advice from http://stackoverflow.com/questions/8437295/jade-template-how-to-pass-concrete-object-to-pages
+	// Copy invoice from input given from nodejs server
+	script
+		var globalStaticInvoice = !{JSON.stringify(locale.invoice)}
+
+	script(src='/javascripts/index_controller.js')
 
 	.container-fluid
 		#menu
@@ -15,10 +21,12 @@ block content
 			img#heart(src="/images/heart.png")
 			| INVOISE
 		div#tagline
-			p #{tagLine}
+			//p !{JSON.stringify(locale.tagLine)}
+			p #{locale.tagLine}
+
 		div#download
 			p 
-				a#download(href="") #{download}
+				a#download(href="") #{locale.download}
 				img#download(src="/images/download.png")
 				
 		div.clear
