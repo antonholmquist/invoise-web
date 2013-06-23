@@ -8,8 +8,9 @@ block content
 
 	// By advice from http://stackoverflow.com/questions/8437295/jade-template-how-to-pass-concrete-object-to-pages
 	// Copy invoice from input given from nodejs server
-	script
-		var globalStaticInvoice = !{JSON.stringify(locale.invoice)}
+	if !static
+		script
+			var globalStaticInvoice = !{JSON.stringify(locale.invoice)}
 
 	script(src='/javascripts/index_controller.js')
 
