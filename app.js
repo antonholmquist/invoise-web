@@ -109,7 +109,7 @@ app.post('/invoice/generate/pdf', function(req, res) {
 
 	var invoice = (req.body);
 
-	res.render('invoice/static', {'invoice': JSON.stringify(invoice), 'static' : true}, function(err, html) {
+	res.render('invoice/static', {'staticInvoice': JSON.stringify(invoice), 'static' : true}, function(err, html) {
   		console.log("html generated: " + html);
 
   		// Write it to temp 
