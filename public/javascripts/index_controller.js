@@ -46,8 +46,8 @@ var opts = {
 		pdfRequest(globalInvoice, function(response) {
 			$("a#download").show();
 			//spinner.stop();
-			//window.location.href = response.downloadURL;
-			window.location.href = response.htmlURL;
+			window.location.href = response.downloadURL;
+			//window.location.href = response.htmlURL;
 		});
 	});
 				
