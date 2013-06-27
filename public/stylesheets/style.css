@@ -127,12 +127,11 @@ table {
 
 table#item-table {
 	line-height: 32px;
-	border: 1px solid black;
 }
 
 
 table tr td {
-	border: 1px solid black;
+	/*border: 1px solid black;*()
 }
 
 
