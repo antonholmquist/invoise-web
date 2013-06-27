@@ -141,7 +141,7 @@ function InvoiceController($scope) {
 
 		$scope.newItem.description = '';
 		$scope.newItem.unitPrice = '';
-		$scope.newItem.quantity = '';
+		$scope.newItem.quantity = '1';
 		
 
 	};
