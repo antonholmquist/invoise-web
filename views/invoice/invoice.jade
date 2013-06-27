@@ -53,10 +53,10 @@ div(ng-controller="InvoiceController")
 							input.quantity(type="text", ng-model="invoice.itemQuantityLabel")
 						th.description
 							input.description(type="text", ng-model="invoice.itemDescriptionLabel")
-						th.price
-							input.price(type="text", ng-model="invoice.itemUnitPriceLabel")
-						th.subtotal
-							input.price(type="text", ng-model="invoice.itemTotalLabel")
+						th.unitPrice
+							input.unitPrice(type="text", ng-model="invoice.itemUnitPriceLabel")
+						th.totalPrice
+							input.totalPrice(type="text", ng-model="invoice.itemTotalLabel")
 
 
 				tbody

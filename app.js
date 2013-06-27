@@ -70,6 +70,13 @@ app.get('/se', function(req, res) {
 	});
 });
 
+app.get('/pl', function(req, res) {
+	res.render('index', {
+		'locale': locale.pl(),
+		'countries': locale.countries()
+	});
+});
+
 // 1. We have invoice data, generate HTML. Needs to be passed with jQuery call.
 // 2. When the HTML is generated
 

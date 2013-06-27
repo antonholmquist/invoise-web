@@ -304,7 +304,7 @@ input.new-item {
 	font-weight: bold;
 }
 
-#item-table thead tr th input.price {
+#item-table thead tr th input.unitPrice, #item-table thead tr th input.totalPrice {
 	text-align: right;
 }
 
@@ -325,7 +325,7 @@ input.new-item {
 	width: 120px;
 }
 
-#item-table td.price input {
+#item-table td.unitPrice input, #item-table td.totalPrice input {
 	text-align: right;
 }
 

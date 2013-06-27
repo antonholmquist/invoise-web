@@ -3,7 +3,8 @@
 exports.countries = function() {
 	var l = {
 		'se': 'Sverige',
-		'en': 'USA'
+		'pl': 'Polska',
+		'en': 'USA',
 	};
 
 	var list = [];
@@ -18,6 +19,13 @@ exports.countries = function() {
 	}
 
 	return list;
+}
+
+function defaultItems() {
+	return [
+		{description: 'example 1', quantity: '1', unitPrice: '100'},
+		{description: 'example 2', quantity: '1', unitPrice: '100'}	
+	];
 }
 
 exports.en = function() {
@@ -36,10 +44,11 @@ exports.en = function() {
 	invoice.id = "001";
 	invoice.items = [];
 	invoice.companyName = "Company Name";
+
 	invoice.itemQuantityLabel = "Quantity";
+	invoice.itemUnitPriceLabel = "Unit Price";
 	invoice.itemDescriptionLabel = "Description";
-	invoice.itemUnitPriceLabel = "Unit ($)";
-	invoice.itemTotalLabel = "Total ($)";
+	invoice.itemTotalLabel = "Net Price";
 
 
 	invoice.idLabel = "Invoice ID";
@@ -54,10 +63,7 @@ exports.en = function() {
 	invoice.fromLabel = "From";
 	invoice.toLabel = "To";
 
-	invoice.items = [
-		{description: 'example 1', quantity: '1', unitPrice: '100'},
-		{description: 'example 2', quantity: '1', unitPrice: '100'}	
-	];
+	invoice.items = defaultItems();
 
 	date = new Date();
 	invoice.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
@@ -84,8 +90,11 @@ exports.se = function() {
 	invoice.id = "001";
 	invoice.items = [];
 	invoice.companyName = "Företagsnamn";
+
+	invoice.itemQuantityLabel = "Antal";
+	invoice.itemUnitPriceLabel = "Enhetspris";
 	invoice.itemDescriptionLabel = "Specifikation";
-	invoice.itemPriceLabel = "Belopp (SEK)";
+	invoice.itemTotalLabel = "Belopp";
 
 	invoice.idLabel = "Fakturanummer";
 	invoice.dateLabel = "Fakturadatum";
@@ -103,16 +112,59 @@ exports.se = function() {
 	invoice.footerColumn1 = "E-post:\nnamn@företag.se";
 	invoice.footerColumn2 = "Org.nr: xxx\nMomsreg.nr: xxx\nGodkänd för F-skatt";
 
-	invoice.items = [
-		{description: 'exempel 1', price: '100'},
-		{description: 'exampel 2', price: '200'},
-	];
+	invoice.items = defaultItems();
 
 	date = new Date();
 	invoice.date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 
 	date = new Date(date.getTime() + 1000 * 3600 * 24 * 30);
 	invoice.dueDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+
+	return a;
+};
+
+
+exports.pl = function() {
+    var a = {};
+ a.tagLine = "Wystaw darmową fakturę i zmień na pdf."
+	a.download = "Konwertuj na PDF";
+	a.add = "Dodaj";
+	a.remove = "Usuń";
+
+	a.invoice = {};
+	invoice = a.invoice;
+	invoice.invoiceText = "Faktura";
+	invoice.currencySymbol = 'PLN';
+	invoice.from = "Nazwa\nAdres\NIP";
+	invoice.to = "Nazwa\nAdres\NIP";
+	invoice.id = "001";
+	invoice.items = [];
+	invoice.companyName = "Nazwa";
+
+	invoice.itemQuantityLabel = "Ilość";
+	invoice.itemUnitPriceLabel = "Cena jednostkowa";
+	invoice.itemDescriptionLabel = "Nazwa towaru lub usługi";
+	invoice.itemTotalLabel = "Cena";
+
+	invoice.idLabel = "Numer faktury";
+	invoice.dateLabel = "Data wystawienia faktury";
+	invoice.dueDateLabel = "Data dostawy lub wykonania usługi";
+
+	invoice.subtotalLabel = "Kwota bez VAT";
+	invoice.vatLabel = "VAT (23%)";
+	invoice.totalLabel = "Razem do zapłaty";
+	invoice.message = "Dziękujemy za skorzystanie z naszej usługi!";
+
+	invoice.fromLabel = "Sprzedawca";
+	invoice.toLabel = "Nabywca";
+
+	invoice.items = defaultItems();
+
+	date = new Date();
+	invoice.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+
+	date = new Date(date.getTime() + 1000 * 3600 * 24 * 30);
+	invoice.dueDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
 
 	return a;
 };
