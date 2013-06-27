@@ -56,28 +56,35 @@ div(ng-controller="InvoiceController")
 				tbody
 
 					// Loop
-					tr.item(ng-repeat="item in invoice.items")
+					tr.item(ng-repeat="item in invoice.items", data-ng-animate="'custom'")
 
 						// Existing items
 
 						td.description(colspan="2")
-							input(type="text", ng-model="item.description", placeholder="description")
+							div
+								input(type="text", ng-model="item.description", placeholder="description")
 						td.price
-							input(type="text", ng-model="item.price", placeholder="price")
+							div
+								input(type="text", ng-model="item.price", placeholder="price")
 						if !static
 							td.edit
-								button(ng-click="removeItem($index)") #{locale.remove}
+								div
+									button(ng-click="removeItem($index)") #{locale.remove}
 
 					// Add new items
 					if !static
 						form(ng-submit="addItem()")
-							tr#new-item
+							tr.item#new-item
 								td.description(colspan="2")
-									input.new-item(type="text", ng-model="newItem.description", placeholder="new item")
+									div 
+										input.new-item(type="text", ng-model="newItem.description", placeholder="new item")
 								td.price
-									input.new-item(type="text", ng-model="newItem.price", placeholder="price")
+									div
+										input.new-item(type="text", ng-model="newItem.price", placeholder="price")
 								td.edit
-									input(type="submit", value="#{locale.add}")
+									div
+										//input(type="submit", value="#{locale.add}")
+										button(ng-click="") #{locale.add}
 
 					//tr.blank
 					//	td(colspan="3") 
