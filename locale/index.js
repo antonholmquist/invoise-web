@@ -28,6 +28,12 @@ function defaultItems() {
 	];
 }
 
+function defaultItemsPL() {
+	return [
+		{description: '1', quantity: '1', unitPrice: '100'},
+		{description: '2', quantity: '1', unitPrice: '100'}	
+	];
+}
 exports.en = function() {
 	var a = {};
 	a.tagLine = "Create a free beautiful invoice online and get the pdf."
@@ -135,8 +141,8 @@ exports.pl = function() {
 	invoice = a.invoice;
 	invoice.invoiceText = "Faktura";
 	invoice.currencySymbol = 'PLN';
-	invoice.from = "Nazwa\nAdres\NIP";
-	invoice.to = "Nazwa\nAdres\NIP";
+	invoice.from = "Nazwa\nAdres\nIP";
+	invoice.to = "Nazwa\nAdres\nIP";
 	invoice.id = "001";
 	invoice.items = [];
 	invoice.companyName = "Nazwa";
@@ -148,7 +154,7 @@ exports.pl = function() {
 
 	invoice.idLabel = "Numer faktury";
 	invoice.dateLabel = "Data wystawienia faktury";
-	invoice.dueDateLabel = "Data dostawy lub wykonania usługi";
+	invoice.dueDateLabel = "Data dostawy";
 
 	invoice.subtotalLabel = "Kwota bez VAT";
 	invoice.vatLabel = "VAT (23%)";
@@ -158,7 +164,7 @@ exports.pl = function() {
 	invoice.fromLabel = "Sprzedawca";
 	invoice.toLabel = "Nabywca";
 
-	invoice.items = defaultItems();
+	invoice.items = defaultItemsPL();
 
 	date = new Date();
 	invoice.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
