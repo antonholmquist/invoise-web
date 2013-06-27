@@ -36,8 +36,11 @@ exports.en = function() {
 	invoice.id = "001";
 	invoice.items = [];
 	invoice.companyName = "Company Name";
+	invoice.itemQuantityLabel = "Quantity";
 	invoice.itemDescriptionLabel = "Description";
-	invoice.itemPriceLabel = "Price ($)";
+	invoice.itemUnitPriceLabel = "Unit ($)";
+	invoice.itemTotalLabel = "Total ($)";
+
 
 	invoice.idLabel = "Invoice ID";
 	invoice.dateLabel = "Invoice Date";
@@ -52,8 +55,8 @@ exports.en = function() {
 	invoice.toLabel = "To";
 
 	invoice.items = [
-		{description: 'example 1', price: '100'},
-		{description: 'example 2', price: '200'},
+		{description: 'example 1', quantity: '1', unitPrice: '100'},
+		{description: 'example 2', quantity: '1', unitPrice: '100'}	
 	];
 
 	date = new Date();

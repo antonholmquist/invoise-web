@@ -48,10 +48,16 @@ div(ng-controller="InvoiceController")
 
 			table.table#item-table
 				thead
-					th.description(colspan="2")
-						input.description(type="text", ng-model="invoice.itemDescriptionLabel")
-					th.price
-						input.price(type="text", ng-model="invoice.itemPriceLabel")
+
+						th.quantity
+							input.quantity(type="text", ng-model="invoice.itemQuantityLabel")
+						th.description
+							input.description(type="text", ng-model="invoice.itemDescriptionLabel")
+						th.price
+							input.price(type="text", ng-model="invoice.itemUnitPriceLabel")
+						th.subtotal
+							input.price(type="text", ng-model="invoice.itemTotalLabel")
+
 
 				tbody
 
@@ -60,12 +66,18 @@ div(ng-controller="InvoiceController")
 
 						// Existing items
 
-						td.description(colspan="2")
+						td.quantity
 							div
-								input(type="text", ng-model="item.description", placeholder="description")
-						td.price
+								input(type="text", ng-model="item.quantity")
+						td.description
 							div
-								input(type="text", ng-model="item.price", placeholder="price")
+								input(type="text", ng-model="item.description")
+						td.unitPrice
+							div
+								input(type="text", ng-model="item.unitPrice")
+						td.totalPrice
+							div
+								input(type="text", ng-model="item.totalPrice")
 						if !static
 							td.edit
 								div
@@ -75,21 +87,27 @@ div(ng-controller="InvoiceController")
 					if !static
 						form(ng-submit="addItem()")
 							tr.item#new-item
-								td.description(colspan="2")
+								td.quantity
 									div 
-										input.new-item(type="text", ng-model="newItem.description", placeholder="new item")
-								td.price
+										input.new-item(type="text", ng-model="newItem.quantity")
+								td.description
+									div 
+										input.new-item(type="text", ng-model="newItem.description")
+								td.unitPrice
 									div
-										input.new-item(type="text", ng-model="newItem.price", placeholder="price")
+										input.new-item(type="text", ng-model="newItem.unitPrice")
+								td.totalPrice
+									div
+										input.new-item(type="text", ng-model="newItem.totalPrice")
 								td.edit
 									div
-										//input(type="submit", value="#{locale.add}")
 										button(ng-click="") #{locale.add}
 
 					//tr.blank
 					//	td(colspan="3") 
 
 					tr.subtotal
+						td
 						td
 						td.description
 							input(type="text", ng-model="invoice.subtotalLabel")
@@ -98,12 +116,14 @@ div(ng-controller="InvoiceController")
 
 					tr.vat
 						td
+						td
 						td.description
 							input(type="text", ng-model="invoice.vatLabel")
 						//VAT {{invoice.vatPercentage * 100}}%
 						td.price 
 							label {{invoice.vatAmount}}
 					tr.total
+						td
 						td
 						td.description
 							input(type="text", ng-model="invoice.totalLabel")

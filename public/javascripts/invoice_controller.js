@@ -73,13 +73,35 @@ function InvoiceController($scope) {
 	$scope.updateSummary = function() {
 
 
+		console.log("updateSummary");
+
 		var subtotalPrice = 0;
 
-		for (i in $scope.invoice.items) {
+		// Set total price
+		for (var i = 0; i < $scope.invoice.items.length; i++) {
 			var item = $scope.invoice.items[i];
-			var rawPrice = item.price.replace(/\,/g,'')
-			item.price = formatMoney(rawPrice);
-			var value = parseFloat(rawPrice, 10);
+
+			item.totalPrice = parseFloat(item.quantity * item.unitPrice);
+
+		}
+
+		for (var i = 0; i < $scope.invoice.items.length; i++) {
+
+			/*
+			var item = $scope.invoice.items[i];
+
+			var rawUnitPrice = item.unitPrice.replace(/\,/g,'')
+			item.unitPrice = formatMoney(rawUnitPrice);
+
+
+			if (item.totalPrice) {
+				var rawTotalPrice = item.totalPrice.replace(/\,/g,'')
+				item.totalPrice = formatMoney(rawTotalPrice);
+			}
+			
+			*/
+
+			var value = parseFloat(item.totalPrice, 10);
 			// 
 			if (isNumber(value)) {
 				subtotalPrice += value;
@@ -100,18 +122,27 @@ function InvoiceController($scope) {
 		$scope.invoice.vatAmount = formatMoney(roundedVatAmount);
 		$scope.invoice.totalPrice = formatMoney(roundedSubtotalPrice + roundedVatAmount);
 
+
 	}; 
 
 
 	$scope.addItem = function() {
+		console.log("add: " + JSON.stringify($scope.newItem));
+		
+		// Need to copy here
 		var item = {
 			description: $scope.newItem.description,
-			price: $scope.newItem.price,
+			unitPrice: $scope.newItem.unitPrice,
+			quantity: $scope.newItem.quantity,
 		}
+
 		$scope.invoice.items.push(item);
 
+
 		$scope.newItem.description = '';
-		$scope.newItem.price = '';
+		$scope.newItem.unitPrice = '';
+		$scope.newItem.quantity = '';
+		
 
 	};
 

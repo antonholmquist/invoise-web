@@ -127,15 +127,14 @@ table {
 
 table#item-table {
 	line-height: 32px;
-	table-layout:fixed;
-	overflow: hidden;
-	white-space: nowrap;
+	border: 1px solid black;
 }
 
 
 table tr td {
-	/*border: 1px solid black;*/
+	border: 1px solid black;
 }
+
 
 /* Ths A4 paper 
 A4 210 × 297 
